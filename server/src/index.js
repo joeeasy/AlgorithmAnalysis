@@ -11,7 +11,7 @@ import webpackConfig from '../../webpack.config';
 // starting app
 const app = express();
 
-const Port = 5000 || process.env.PORT;
+// const Port = 5000 || process.env.PORT;
 // console.log(process.env)
 
 // parse application/x-www-form-urlencoded
@@ -70,4 +70,4 @@ app.get('/scrape', (req, res) => {
  })
 
 
-app.listen(Port, () => console.log('Example app listening on port '+ Port))
+app.listen(5000 || process.env.PORT, () => console.log('Example app listening on '))

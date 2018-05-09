@@ -41,7 +41,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // starting app
 var app = (0, _express2.default)();
 
-var Port = 5000 || process.env.PORT;
+// const Port = 5000 || process.env.PORT;
 // console.log(process.env)
 
 // parse application/x-www-form-urlencoded
@@ -97,7 +97,7 @@ app.get('/scrape', function (req, res) {
   });
 });
 
-app.listen(Port, function () {
-  return console.log('Example app listening on port ' + Port);
+app.listen(5000 || process.env.PORT, function () {
+  return console.log('Example app listening on ');
 });
 //# sourceMappingURL=index.js.map
