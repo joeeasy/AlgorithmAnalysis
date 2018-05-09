@@ -1,1 +1,1 @@
-web:  npm start
+web: ./build/src npm start
