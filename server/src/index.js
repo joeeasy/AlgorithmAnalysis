@@ -70,4 +70,4 @@ app.get('/scrape', (req, res) => {
  })
 
 
-app.listen(5000 || process.env.PORT, () => console.log('Example app listening on '))
+app.listen(process.env.PORT || 8080)

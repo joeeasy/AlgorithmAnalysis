@@ -37,7 +37,8 @@
     "request": "^2.85.0"
   },
   "engines": {
-    "node": "9.11.1"
+    "node": "9.11.1",
+    "npm" : "6.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
