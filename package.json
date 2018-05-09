@@ -25,9 +25,6 @@
     "cheerio": "^1.0.0-rc.2",
     "crawler": "^1.1.2",
     "express": "^3.21.2",
-    "engines": {
-      "node": "9.11.1"
-    },
     "react": "^16.3.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.3.0",
@@ -36,6 +33,9 @@
     "react-router-dom": "^4.2.2",
     "react-transition-group": "^2.3.0",
     "request": "^2.85.0"
+  },
+  "engines": {
+    "node": "9.11.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
