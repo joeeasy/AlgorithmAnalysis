@@ -97,7 +97,5 @@ app.get('/scrape', function (req, res) {
   });
 });
 
-app.listen(5000 || process.env.PORT, function () {
-  return console.log('Example app listening on ');
-});
+app.listen(process.env.PORT || 8080);
 //# sourceMappingURL=index.js.map
