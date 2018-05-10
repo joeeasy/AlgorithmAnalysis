@@ -1,12 +1,18 @@
 {
-  "name": "Algorithm Analysis",
+  "name": "AlgorithmAnalysis",
   "version": "1.0.0",
   "description": "Algorithm analysis ",
+  "commentsForDev":
+    "nodemon --exec babel-node server/src/index.js  --ignore client",
+  "commentForProd": "npm run build && node ./build/src/index.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --watch",
-    "start": "nodemon --exec babel-node server/src/index.js  --ignore client"
+    "dev": "nodemon --exec babel-node server/src/index.js  --ignore client",
+    "clean": "rm -rf build && mkdir build && cd build && mkdir src && cd src",
+    "build-babel": "babel -d ./build/src ./server/src -s",
+    "build": "npm run clean && npm run build-babel && webpack --watch",
+    "start": "npm run build && node ./build/src/index.js"
   },
   "repository": {
     "type": "git",
@@ -32,15 +38,7 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-transition-group": "^2.3.0",
-    "request": "^2.85.0"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
+    "request": "^2.85.0",
     "css-loader": "^0.28.11",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.1.0",
@@ -51,6 +49,16 @@
     "webpack": "^4.4.1",
     "webpack-cli": "^2.0.13",
     "webpack-dev-middleware": "^3.1.0",
-    "webpack-dev-server": "^3.1.1"
+    "webpack-dev-server": "^3.1.1",
+    "babel-loader": "^7.1.4",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1"
+  },
+  "engines": {
+    "node": "9.11.1",
+    "npm": "6.0.0"
   }
 }
