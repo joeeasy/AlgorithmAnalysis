@@ -2,13 +2,17 @@
   "name": "AlgorithmAnalysis",
   "version": "1.0.0",
   "description": "Algorithm analysis ",
+  "commentsForDev":
+    "nodemon --exec babel-node server/src/index.js  --ignore client",
+  "commentForProd": "npm run build && node ./build/src/index.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run build && node ./build/src/index.js",
+    "dev": "nodemon --exec babel-node server/src/index.js  --ignore client",
     "clean": "rm -rf build && mkdir build && cd build && mkdir src && cd src",
     "build-babel": "babel -d ./build/src ./server/src -s",
-    "build": "npm run clean && npm run build-babel"
+    "build": "npm run clean && npm run build-babel && webpack --watch",
+    "start": "npm run build && node ./build/src/index.js"
   },
   "repository": {
     "type": "git",

@@ -11,7 +11,7 @@ import webpackConfig from '../../webpack.config';
 // starting app
 const app = express();
 
-// const Port = 5000 || process.env.PORT;
+const Port = 5000 || process.env.PORT;
 // console.log(process.env)
 
 // parse application/x-www-form-urlencoded
@@ -34,8 +34,7 @@ app.use(webpackMiddleware(webpack(webpackConfig)));
 
 // app.use(express.static(path.resolve(__dirname, '../../client/public')));
 
-app.get('/', (req, res) => {
-  console.log(path.resolve(__dirname, '../../client/public/index.html'))
+app.get('/*', (req, res) => {
   res.sendfile(path.resolve(__dirname, '../../client/public/index.html'));
 });
 
@@ -69,5 +68,4 @@ app.get('/scrape', (req, res) => {
  
  })
 
-
-app.listen(process.env.PORT || 8080)
+app.listen(Port, (req, res) => console.log('server started http://localhost:'+Port))

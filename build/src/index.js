@@ -41,7 +41,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // starting app
 var app = (0, _express2.default)();
 
-// const Port = 5000 || process.env.PORT;
+var Port = 5000 || process.env.PORT;
 // console.log(process.env)
 
 // parse application/x-www-form-urlencoded
@@ -64,8 +64,7 @@ app.use((0, _webpackDevMiddleware2.default)((0, _webpack2.default)(_webpack4.def
 
 // app.use(express.static(path.resolve(__dirname, '../../client/public')));
 
-app.get('/', function (req, res) {
-  console.log(_path2.default.resolve(__dirname, '../../client/public/index.html'));
+app.get('/*', function (req, res) {
   res.sendfile(_path2.default.resolve(__dirname, '../../client/public/index.html'));
 });
 
@@ -97,5 +96,7 @@ app.get('/scrape', function (req, res) {
   });
 });
 
-app.listen(process.env.PORT || 8080);
+app.listen(Port, function (req, res) {
+  return console.log('server started http://localhost:' + Port);
+});
 //# sourceMappingURL=index.js.map

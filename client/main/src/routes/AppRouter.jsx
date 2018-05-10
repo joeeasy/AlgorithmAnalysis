@@ -7,6 +7,7 @@ import Home from "../components/pages/Home";
 import About from "../components/pages/About";
 import Contact from "../components/pages/Contact";
 import Asci from "../components/pages/masterlist/Asci";
+import Search from "../components/pages/Search";
 // import NotFound from "../components/common/NotFound";
 // import Discover from "../components/pages/Discover";
 // import PopularClips from "../components/pages/PopularClips";
@@ -25,7 +26,7 @@ const AppRouter = () => (
           <Route path="/about" exact component={About} />
           <Route path="/contact" exact component={Contact} />
           <Route path="/asci" exact component={Asci} />
-          <Route path="/search" exact component={Asci} />
+          <Route path="/joe" exact component={Search} />
         </Switch>
       </CSSTransition>
     </TransitionGroup>
