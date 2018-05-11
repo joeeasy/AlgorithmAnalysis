@@ -41,7 +41,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // starting app
 var app = (0, _express2.default)();
 
-var Port = 5000 || process.env.PORT;
+var Port = process.env.PORT || 5000;
 // console.log(process.env)
 
 // parse application/x-www-form-urlencoded

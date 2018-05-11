@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SearchForm from "./functional/SearchForm";
 import axios from "axios";
 import SearchResult from "./functional/SearchResult";
+import NoMatchFound from "./functional/NoMatchFound";
 
 let searchResult = [];
 class Search extends Component {
@@ -72,10 +73,13 @@ class Search extends Component {
         <div className="g-promo-section">
           <div className="container g-padding-y-80--xs g-padding-y-125--sm">
             <div className="row">
-              {this.state.result &&
+              {this.state.result.length > 0 ? (
                 this.state.result.map((result, index) => (
                   <SearchResult result={result} indexId={index} key={index} />
-                ))}
+                ))
+              ) : (
+                <NoMatchFound />
+              )}
             </div>
           </div>
         </div>

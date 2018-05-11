@@ -11,7 +11,7 @@ import webpackConfig from '../../webpack.config';
 // starting app
 const app = express();
 
-const Port = 5000 || process.env.PORT;
+const Port =  process.env.PORT || 5000;
 // console.log(process.env)
 
 // parse application/x-www-form-urlencoded
