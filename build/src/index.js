@@ -114,7 +114,7 @@ app.post('/search', function (req, res) {
   });
 });
 
-app.listen(Port, function (req, res) {
+app.listen(5000 || process.env.PORT, function (req, res) {
   return console.log('server started http://localhost:' + Port);
 });
 //# sourceMappingURL=index.js.map
