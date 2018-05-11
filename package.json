@@ -10,7 +10,7 @@
     "dev": "nodemon --exec babel-node ./server/src/index.js",
     "clean": "rm -rf build && mkdir build && cd build && mkdir src && cd src",
     "build-babel": "babel -d ./build/src ./server/src -s",
-    "build": "npm run clean && npm run build-babel && webpack",
+    "build": "npm run clean && npm run build-babel",
     "start": "npm run build && node ./build/src/index.js",
     "client-server": "webpack-dev-server"
   },
