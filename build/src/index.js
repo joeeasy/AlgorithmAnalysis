@@ -72,24 +72,42 @@ app.get('/*', function (req, res) {
  * start scrapper
  */
 
-app.get('/scrape', function (req, res) {
-  var url = 'http://mjl.clarivate.com/cgi-bin/jrnlst/jlresults.cgi?PC=A&Word=' + req.query.word;
+app.post('/search', function (req, res) {
+  // console.log(req.query)
+  var url = decodeURIComponent(req.query.search);
+  console.log(url);
 
   (0, _request2.default)(url, function (error, response, body) {
+    var title = void 0,
+        isbn = void 0,
+        description = void 0,
+        coverages = void 0,
+        coverage = void 0;
+    coverage = [];
+    var data = [];
+
     if (!error) {
       var $ = _cheerio2.default.load(body);
       var allBody = void 0;
 
       // var title = $('title').text();
-      var content = $('body').html();
-      allBody = $('p.alphalink');
+      var content = Array.from($('#results > form > ul > li'));
+      //  coverages = Array.from($('#results > form > ul > li > div > ul > li > a'));
+      allBody = $('#results > form > ul').html();
       // var freeArticles = $('.central-featured-lang.lang1 a small').text()
 
-      console.log('URL: ' + url);
-      console.log('Title: ');
-      console.log('EN articles: ');
-      console.log(allBody.children());
-      res.send(content);
+      console.log('Loading: ' + url);
+      content.forEach(function (element, index) {
+        title = element.children[0].children[0].data;
+        isbn = element.children[1].data;
+        description = element.children[1].next.next.data;
+        coverages = Array.from($(element).find("div > ul > li > a")).filter(function (element) {
+          !undefined && coverage.push({ link: element.attribs, text: element.children[0].data });
+        });
+        data.push({ title: title, isbn: isbn, description: description, coverage: coverage });
+      });
+
+      res.send(data);
     } else {
       console.log("We’ve encountered an error: " + error);
     }

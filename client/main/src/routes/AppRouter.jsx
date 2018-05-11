@@ -26,7 +26,7 @@ const AppRouter = () => (
           <Route path="/about" exact component={About} />
           <Route path="/contact" exact component={Contact} />
           <Route path="/asci" exact component={Asci} />
-          <Route path="/joe" exact component={Search} />
+          <Route path="/search" exact component={Search} />
         </Switch>
       </CSSTransition>
     </TransitionGroup>
