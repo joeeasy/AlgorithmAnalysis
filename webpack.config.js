@@ -38,5 +38,10 @@ module.exports = {
     contentBase: path.join(__dirname, "client/public"),
     port: 3500,
     historyApiFallback: true
+  },
+  watchOptions: {
+    aggregateTimeout: 300,
+    poll: 1000,
+    ignored: '/node_modules/'
   }
 }
