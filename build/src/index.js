@@ -41,7 +41,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // starting app
 var app = (0, _express2.default)();
 
-var Port = 5000 || process.env.PORT;
+var Port = process.env.PORT || 5000;
 // console.log(process.env)
 
 // parse application/x-www-form-urlencoded
@@ -72,24 +72,69 @@ app.get('/*', function (req, res) {
  * start scrapper
  */
 
-app.get('/scrape', function (req, res) {
-  var url = 'http://mjl.clarivate.com/cgi-bin/jrnlst/jlresults.cgi?PC=A&Word=' + req.query.word;
+app.post('/search', function (req, res) {
+  // console.log(req.query)
+  var url = decodeURIComponent(req.query.search);
+  console.log(url);
 
   (0, _request2.default)(url, function (error, response, body) {
+    var title = void 0,
+        isbn = void 0,
+        description = void 0,
+        coverages = void 0,
+        coverage = void 0;
+    coverages = [];
+    coverage = [];
+    var data = [];
+
     if (!error) {
       var $ = _cheerio2.default.load(body);
       var allBody = void 0;
 
       // var title = $('title').text();
-      var content = $('body').html();
-      allBody = $('p.alphalink');
+      var content = Array.from($('#results > form > ul > li'));
+      //  coverages = Array.from($('#results > form > ul > li > div > ul > li > a'));
+      //  allBody = $('#results > form > ul').html();
       // var freeArticles = $('.central-featured-lang.lang1 a small').text()
 
-      console.log('URL: ' + url);
-      console.log('Title: ');
-      console.log('EN articles: ');
-      console.log(allBody.children());
-      res.send(content);
+      console.log('Loading: ' + url);
+      content.forEach(function (journal, index) {
+        title = journal.children[0].children[0].data;
+        isbn = journal.children[1].data;
+        description = journal.children[1].next.next.data;
+        //  console.log(element.children)
+        // console.log($(journal.children.find()))
+        //  journal.children.filter((element) => {
+        //    /* Array.from(element.next.children).forEach((element) => {
+        //     //  console.log(element)
+        //    }) */
+
+        // ;
+        //    allBody = element.children;
+        //    allBody = Array.from($(allBody).find("li > a")).filter((cite) => {
+
+        //     return (cite !== ([] || undefined)) ? coverage.push( {link: cite.attribs, text: cite.children[0].data} ) :  "Nothing to show";
+        //     // console.log("Coverages :",  coverage)
+
+        //    });
+        //   console.log(allBody)
+        //  })
+        $(journal).find("div > ul").each(function (i, cite) {
+          coverage = [];
+          cite.children.forEach(function (name) {
+            if (name.name === 'li') {
+              console.log(name.firstChild.attribs);
+              coverage.push({ link: name.firstChild.attribs, text: name.firstChild.children[0].data });
+            }
+          });
+
+          // (cite !== undefined) && coverage.push( {link: cite.attribs, text: cite.children[0].data} );
+        });
+        //  coverage.push(coverages);
+        data.push({ title: title, isbn: isbn, description: description, coverage: coverage });
+      });
+
+      res.send(data);
     } else {
       console.log("We’ve encountered an error: " + error);
     }
