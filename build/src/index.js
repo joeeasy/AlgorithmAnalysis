@@ -121,11 +121,12 @@ app.post('/search', function (req, res) {
         //  })
         $(journal).find("div > ul").each(function (i, cite) {
           coverage = [];
-          console.log('Coverage', cite.children.forEach(function (name) {
+          cite.children.forEach(function (name) {
             if (name.name === 'li') {
+              console.log(name.firstChild.attribs);
               coverage.push({ link: name.firstChild.attribs, text: name.firstChild.children[0].data });
             }
-          }));
+          });
 
           // (cite !== undefined) && coverage.push( {link: cite.attribs, text: cite.children[0].data} );
         });

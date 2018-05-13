@@ -7,8 +7,8 @@ import Loader from "react-loader";
 
 var options = {
   lines: 13,
-  length: 20,
-  width: 10,
+  length: 18,
+  width: 8,
   radius: 30,
   scale: 1.0,
   corners: 1,
@@ -19,7 +19,6 @@ var options = {
   speed: 1,
   trail: 60,
   fps: 20,
-  zIndex: 2e9,
   top: "50%",
   left: "50%",
   shadow: false,

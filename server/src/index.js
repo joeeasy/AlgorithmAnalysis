@@ -89,7 +89,8 @@ app.post('/search', (req, res) => {
            coverage = [];
            cite.children.forEach(name => {
             if (name.name === 'li') {
-              coverage.push({link: name.firstChild.attribs, text: name.firstChild.children[0].data});
+              console.log(name.firstChild.attribs)
+              coverage.push({link: (name.firstChild.attribs), text: name.firstChild.children[0].data});
               
               
             }

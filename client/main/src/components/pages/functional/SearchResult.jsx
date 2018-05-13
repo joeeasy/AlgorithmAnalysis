@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class SearchResult extends Component {
   constructor(props) {
@@ -32,9 +33,18 @@ class SearchResult extends Component {
                 <ul className="list-unstyled">
                   {this.props.result.coverage.map((coverage, index) => (
                     <li key={index}>
-                      <a className="g-color--primary" href={coverage.link}>
+                      <Link
+                        className="g-color--primary"
+                        destination={coverage.link.href}
+                        to={
+                          "/coverage/" +
+                          coverage.text +
+                          "," +
+                          encodeURIComponent(coverage.link.href)
+                        }
+                      >
                         {coverage.text}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
