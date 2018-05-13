@@ -83,6 +83,7 @@ app.post('/search', function (req, res) {
         description = void 0,
         coverages = void 0,
         coverage = void 0;
+    coverages = [];
     coverage = [];
     var data = [];
 
@@ -93,17 +94,42 @@ app.post('/search', function (req, res) {
       // var title = $('title').text();
       var content = Array.from($('#results > form > ul > li'));
       //  coverages = Array.from($('#results > form > ul > li > div > ul > li > a'));
-      allBody = $('#results > form > ul').html();
+      //  allBody = $('#results > form > ul').html();
       // var freeArticles = $('.central-featured-lang.lang1 a small').text()
 
       console.log('Loading: ' + url);
-      content.forEach(function (element, index) {
-        title = element.children[0].children[0].data;
-        isbn = element.children[1].data;
-        description = element.children[1].next.next.data;
-        coverages = Array.from($(element).find("div > ul > li > a")).filter(function (element) {
-          !undefined && coverage.push({ link: element.attribs, text: element.children[0].data });
+      content.forEach(function (journal, index) {
+        title = journal.children[0].children[0].data;
+        isbn = journal.children[1].data;
+        description = journal.children[1].next.next.data;
+        //  console.log(element.children)
+        // console.log($(journal.children.find()))
+        //  journal.children.filter((element) => {
+        //    /* Array.from(element.next.children).forEach((element) => {
+        //     //  console.log(element)
+        //    }) */
+
+        // ;
+        //    allBody = element.children;
+        //    allBody = Array.from($(allBody).find("li > a")).filter((cite) => {
+
+        //     return (cite !== ([] || undefined)) ? coverage.push( {link: cite.attribs, text: cite.children[0].data} ) :  "Nothing to show";
+        //     // console.log("Coverages :",  coverage)
+
+        //    });
+        //   console.log(allBody)
+        //  })
+        $(journal).find("div > ul").each(function (i, cite) {
+          coverage = [];
+          console.log('Coverage', cite.children.forEach(function (name) {
+            if (name.name === 'li') {
+              coverage.push({ link: name.firstChild.attribs, text: name.firstChild.children[0].data });
+            }
+          }));
+
+          // (cite !== undefined) && coverage.push( {link: cite.attribs, text: cite.children[0].data} );
         });
+        //  coverage.push(coverages);
         data.push({ title: title, isbn: isbn, description: description, coverage: coverage });
       });
 

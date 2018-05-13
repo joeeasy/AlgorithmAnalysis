@@ -37,12 +37,6 @@ class SearchResult extends Component {
                       </a>
                     </li>
                   ))}
-
-                  <li>
-                    <a className="g-color--primary" href="#">
-                      link
-                    </a>
-                  </li>
                 </ul>
               </div>
             </div>

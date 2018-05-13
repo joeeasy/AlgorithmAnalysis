@@ -49,6 +49,7 @@ app.post('/search', (req, res) => {
  
    request(url, function (error, response, body) {
      let title, isbn, description, coverages, coverage;
+     coverages = [];
      coverage = [];
      let data = [];
     
@@ -59,19 +60,48 @@ app.post('/search', (req, res) => {
        // var title = $('title').text();
        var content = Array.from($('#results > form > ul > li'));
       //  coverages = Array.from($('#results > form > ul > li > div > ul > li > a'));
-       allBody = $('#results > form > ul').html();
+      //  allBody = $('#results > form > ul').html();
        // var freeArticles = $('.central-featured-lang.lang1 a small').text()
  
        console.log('Loading: ' + url);
-       content.forEach((element, index) => {
-         title = element.children[0].children[0].data;
-         isbn = element.children[1].data;
-         description = element.children[1].next.next.data;
-         coverages= Array.from($(element).find("div > ul > li > a")).filter((element) => {
-          !undefined && coverage.push( {link: element.attribs, text: element.children[0].data} );
+       content.forEach((journal, index) => {
+         title = journal.children[0].children[0].data;
+         isbn = journal.children[1].data;
+         description = journal.children[1].next.next.data;
+        //  console.log(element.children)
+        // console.log($(journal.children.find()))
+        //  journal.children.filter((element) => {
+        //    /* Array.from(element.next.children).forEach((element) => {
+        //     //  console.log(element)
+        //    }) */
+
+        // ;
+        //    allBody = element.children;
+        //    allBody = Array.from($(allBody).find("li > a")).filter((cite) => {
+          
+        //     return (cite !== ([] || undefined)) ? coverage.push( {link: cite.attribs, text: cite.children[0].data} ) :  "Nothing to show";
+        //     // console.log("Coverages :",  coverage)
+  
+        //    });
+        //   console.log(allBody)
+        //  })
+         $(journal).find("div > ul").each((i, cite) => {
+           coverage = [];
+           cite.children.forEach(name => {
+            if (name.name === 'li') {
+              coverage.push({link: name.firstChild.attribs, text: name.firstChild.children[0].data});
+              
+              
+            }
+           });
+           
+          
+          // (cite !== undefined) && coverage.push( {link: cite.attribs, text: cite.children[0].data} );
 
          })
-          data.push({ title, isbn, description, coverage})
+        //  coverage.push(coverages);
+          data.push({ title, isbn, description, coverage});
+
        })
 
        res.send(data);

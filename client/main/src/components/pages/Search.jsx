@@ -3,19 +3,42 @@ import SearchForm from "./functional/SearchForm";
 import axios from "axios";
 import SearchResult from "./functional/SearchResult";
 import NoMatchFound from "./functional/NoMatchFound";
+import Loader from "react-loader";
 
+var options = {
+  lines: 13,
+  length: 20,
+  width: 10,
+  radius: 30,
+  scale: 1.0,
+  corners: 1,
+  color: "#000",
+  opacity: 0.25,
+  rotate: 0,
+  direction: 1,
+  speed: 1,
+  trail: 60,
+  fps: 20,
+  zIndex: 2e9,
+  top: "50%",
+  left: "50%",
+  shadow: false,
+  hwaccel: false,
+  position: "absolute"
+};
 let searchResult = [];
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = { result: [] };
+    this.state = { result: [], loaded: true };
     this.searchFormHandler = this.searchFormHandler.bind(this);
   }
 
   searchFormHandler(e) {
     let that = this;
+
     e.preventDefault();
-    console.log(this);
+    that.setState(() => ({ loaded: false }));
     let url = encodeURIComponent(
       `http://mjl.clarivate.com/cgi-bin/jrnlst/jlresults.cgi?PC=MASTER&Word=${
         e.target.firstChild.value
@@ -35,7 +58,12 @@ class Search extends Component {
       return axios
         .post(`/search?search=${url}`)
         .then(function(response) {
-          return console.log(that.setState(() => ({ result: response.data })));
+          return console.log(
+            that.setState(prevState => ({
+              result: response.data,
+              loaded: true
+            }))
+          );
         })
         .catch(function(error) {
           console.log(error);
@@ -73,7 +101,12 @@ class Search extends Component {
         <div className="g-promo-section">
           <div className="container g-padding-y-80--xs g-padding-y-125--sm">
             <div className="row">
-              {this.state.result.length > 0 ? (
+              <Loader
+                loaded={this.state.loaded}
+                options={options}
+                className="spinner"
+              />
+              {this.state.result.length > 0 && this.state.loaded === true ? (
                 this.state.result.map((result, index) => (
                   <SearchResult result={result} indexId={index} key={index} />
                 ))
