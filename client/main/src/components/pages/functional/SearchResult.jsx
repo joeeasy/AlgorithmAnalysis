@@ -38,12 +38,13 @@ class SearchResult extends Component {
                         destination={coverage.link.href}
                         to={
                           "/coverage/" +
+                          "Algorithm " +
                           coverage.text +
                           "," +
                           encodeURIComponent(coverage.link.href)
                         }
                       >
-                        {coverage.text}
+                        {"Algorithm " + coverage.text}
                       </Link>
                     </li>
                   ))}
