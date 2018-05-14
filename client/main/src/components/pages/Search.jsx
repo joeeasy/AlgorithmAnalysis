@@ -31,46 +31,36 @@ class Search extends Component {
     super(props);
     this.state = { result: [], loaded: true };
     this.searchFormHandler = this.searchFormHandler.bind(this);
+    this.searchJournal = this.searchJournal.bind(this);
+  }
+
+  searchJournal(url) {
+    let that = this;
+    return axios
+      .post(`/search?search=${url}`)
+      .then(function(response) {
+        return console.log(
+          that.setState(prevState => ({
+            result: response.data,
+            loaded: true
+          }))
+        );
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   searchFormHandler(e) {
-    let that = this;
-
     e.preventDefault();
+    let that = this;
     that.setState(() => ({ loaded: false }));
     let url = encodeURIComponent(
       `http://mjl.clarivate.com/cgi-bin/jrnlst/jlresults.cgi?PC=MASTER&Word=${
         e.target.firstChild.value
       }`
     );
-    console.log(url);
-    // axios
-    //   .post(`/search?search=${url}`)
-    //   .then(function(response) {
-    //     searchResult = response.data;
-    //   })
-    //   .catch(function(error) {
-    //     console.log(error);
-    //   });
-    // console.log(searchResult);
-    const searchJournal = url => {
-      return axios
-        .post(`/search?search=${url}`)
-        .then(function(response) {
-          return console.log(
-            that.setState(prevState => ({
-              result: response.data,
-              loaded: true
-            }))
-          );
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    };
-    searchResult = searchJournal(url);
-    console.log(searchResult);
-
+    this.searchJournal(url);
     e.target.reset();
   }
   render() {
@@ -79,7 +69,7 @@ class Search extends Component {
         <div
           className="g-bg-position--center js__parallax-window"
           style={{
-            background: "url(img/1920x1080/09.jpg) 50% 0 no-repeat fixed"
+            background: "url(/img/1920x1080/09.jpg) 50% 0 no-repeat fixed"
           }}
         >
           <div className="g-container--md g-text-center--xs g-padding-y-150--xs">
@@ -144,6 +134,20 @@ class Search extends Component {
         </div>
       </div>
     );
+  }
+  componentDidMount() {
+    let url = encodeURIComponent(
+      `http://mjl.clarivate.com/cgi-bin/jrnlst/jlresults.cgi?PC=${encodeURIComponent(
+        this.props.match.params.id
+      ).slice(-2)}`
+    );
+    if (url !== "undefined" && url !== undefined) {
+      console.log(url);
+      let that = this;
+      that.setState(() => ({ loaded: false }));
+      return this.searchJournal(url);
+      console.log("Mounted");
+    }
   }
 }
 
