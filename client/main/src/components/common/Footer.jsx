@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 const Footer = () => (
-  <footer className="g-bg-color--dark">
+  <footer>
     {/* <!-- Links --> */}
     <div className="g-hor-divider__dashed--white-opacity-lightest">
       <div className="container g-padding-y-80--xs">
