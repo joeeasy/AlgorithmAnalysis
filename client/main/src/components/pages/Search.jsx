@@ -94,8 +94,7 @@ class Search extends Component {
               <Loader
                 loaded={this.state.loaded}
                 options={options}
-                className="spinner"
-              />
+                className="spinner">
               {this.state.result.length > 0 && this.state.loaded === true ? (
                 this.state.result.map((result, index) => (
                   <SearchResult result={result} indexId={index} key={index} />
@@ -104,6 +103,7 @@ class Search extends Component {
                 <NoMatchFound />
                 // <CitaionIndex />
               )}
+              </Loader>
             </div>
           </div>
         </div>

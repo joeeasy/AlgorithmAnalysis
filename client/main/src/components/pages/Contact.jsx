@@ -48,7 +48,10 @@ class Contact extends Component {
               </div>
             </div>
           </div>
-          <form className="center-block g-width-500--sm g-width-550--md">
+          <form
+            className="center-block g-width-500--sm g-width-550--md"
+            action="/contact"
+          >
             <div className="g-margin-b-30--xs">
               <input
                 type="text"
