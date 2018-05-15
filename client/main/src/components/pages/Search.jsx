@@ -101,8 +101,8 @@ class Search extends Component {
                   <SearchResult result={result} indexId={index} key={index} />
                 ))
               ) : (
-                // <NoMatchFound />
-                <CitaionIndex />
+                <NoMatchFound />
+                // <CitaionIndex />
               )}
             </div>
           </div>
