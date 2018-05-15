@@ -15,16 +15,17 @@ const Port =  process.env.PORT || 5000;
 // console.log(process.env)
 
 // parse application/x-www-form-urlencoded
-// app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }))
  
 // // parse application/json
-// app.use(bodyParser.json())
+app.use(bodyParser.json())
  
-// app.use(function (req, res) {
-//   res.setHeader('Content-Type', 'text/plain')
-//   res.write('you posted:\n')
-//   res.end(JSON.stringify(req.body, null, 2))
-// })
+app.use(function (req, res) {
+  res.setHeader('Content-Type', 'text/plain')
+  res.write('you posted:\n')
+  res.end(JSON.stringify(req.body, null, 2))
+});
+
 // load static files=============
 app.use(express.static(path.resolve(__dirname, '../../client/public')));
 // =============================
@@ -41,6 +42,11 @@ app.get('/*', (req, res) => {
 /**
  * start scrapper
  */
+app.post('/contact', (req, res) => {
+  console.log(req.body)
+  res.send(req.body);
+})
+
 
 app.post('/search', (req, res) => {
   // console.log(req.query)
@@ -55,36 +61,13 @@ app.post('/search', (req, res) => {
     
      if (!error) {
        var $ = cheerio.load(body)
-       let allBody;
- 
-       // var title = $('title').text();
+
        var content = Array.from($('#results > form > ul > li'));
-      //  coverages = Array.from($('#results > form > ul > li > div > ul > li > a'));
-      //  allBody = $('#results > form > ul').html();
-       // var freeArticles = $('.central-featured-lang.lang1 a small').text()
- 
-       console.log('Loading: ' + url);
        content.forEach((journal, index) => {
          title = journal.children[0].children[0].data;
          isbn = journal.children[1].data;
          description = journal.children[1].next.next.data;
-        //  console.log(element.children)
-        // console.log($(journal.children.find()))
-        //  journal.children.filter((element) => {
-        //    /* Array.from(element.next.children).forEach((element) => {
-        //     //  console.log(element)
-        //    }) */
-
-        // ;
-        //    allBody = element.children;
-        //    allBody = Array.from($(allBody).find("li > a")).filter((cite) => {
-          
-        //     return (cite !== ([] || undefined)) ? coverage.push( {link: cite.attribs, text: cite.children[0].data} ) :  "Nothing to show";
-        //     // console.log("Coverages :",  coverage)
-  
-        //    });
-        //   console.log(allBody)
-        //  })
+        // 
          $(journal).find("div > ul").each((i, cite) => {
            coverage = [];
            cite.children.forEach(name => {

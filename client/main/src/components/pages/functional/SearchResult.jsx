@@ -5,6 +5,23 @@ class SearchResult extends Component {
   constructor(props) {
     super(props);
   }
+  displayText(text) {
+    switch (text) {
+      case "Current Contents - Agriculture, Biology & Environmental Sciences":
+        return "Algorithm Biological Citation Index";
+      case "Social & Behavioral Sciences":
+        return "Algorithm Science Citation Index";
+      case "Social Sciences Citation Index":
+        return "Algorithm Science And Art Citation Index";
+      // expected output: "Mangoes and papayas are $2.79 a pound."
+      case "Science Citation Index":
+        return "Scholar Citation Index";
+      case "Emerging Sources Citation Index":
+        return "Medical Citation Index";
+      default:
+        return "Other Citation Index";
+    }
+  }
   render() {
     return (
       <div className="col-sm-12 g-margin-b-30--xs g-margin-b-0--md">
@@ -38,13 +55,12 @@ class SearchResult extends Component {
                         destination={coverage.link.href}
                         to={
                           "/coverage/" +
-                          "Algorithm " +
-                          coverage.text +
+                          this.displayText(coverage.text) +
                           "," +
                           encodeURIComponent(coverage.link.href)
                         }
                       >
-                        {"Algorithm " + coverage.text}
+                        {this.displayText(coverage.text)}
                       </Link>
                     </li>
                   ))}
