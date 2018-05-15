@@ -4,6 +4,7 @@ import axios from "axios";
 import SearchResult from "./functional/SearchResult";
 import NoMatchFound from "./functional/NoMatchFound";
 import Loader from "react-loader";
+import CitaionIndex from "./CitationIndex";
 
 var options = {
   lines: 13,
@@ -31,46 +32,36 @@ class Search extends Component {
     super(props);
     this.state = { result: [], loaded: true };
     this.searchFormHandler = this.searchFormHandler.bind(this);
+    this.searchJournal = this.searchJournal.bind(this);
+  }
+
+  searchJournal(url) {
+    let that = this;
+    return axios
+      .post(`/search?search=${url}`)
+      .then(function(response) {
+        return console.log(
+          that.setState(prevState => ({
+            result: response.data,
+            loaded: true
+          }))
+        );
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   searchFormHandler(e) {
-    let that = this;
-
     e.preventDefault();
+    let that = this;
     that.setState(() => ({ loaded: false }));
     let url = encodeURIComponent(
       `http://mjl.clarivate.com/cgi-bin/jrnlst/jlresults.cgi?PC=MASTER&Word=${
         e.target.firstChild.value
       }`
     );
-    console.log(url);
-    // axios
-    //   .post(`/search?search=${url}`)
-    //   .then(function(response) {
-    //     searchResult = response.data;
-    //   })
-    //   .catch(function(error) {
-    //     console.log(error);
-    //   });
-    // console.log(searchResult);
-    const searchJournal = url => {
-      return axios
-        .post(`/search?search=${url}`)
-        .then(function(response) {
-          return console.log(
-            that.setState(prevState => ({
-              result: response.data,
-              loaded: true
-            }))
-          );
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    };
-    searchResult = searchJournal(url);
-    console.log(searchResult);
-
+    this.searchJournal(url);
     e.target.reset();
   }
   render() {
@@ -79,7 +70,7 @@ class Search extends Component {
         <div
           className="g-bg-position--center js__parallax-window"
           style={{
-            background: "url(img/1920x1080/09.jpg) 50% 0 no-repeat fixed"
+            background: "url(/img/1920x1080/09.jpg) 50% 0 no-repeat fixed"
           }}
         >
           <div className="g-container--md g-text-center--xs g-padding-y-150--xs">
@@ -103,15 +94,16 @@ class Search extends Component {
               <Loader
                 loaded={this.state.loaded}
                 options={options}
-                className="spinner"
-              />
+                className="spinner">
               {this.state.result.length > 0 && this.state.loaded === true ? (
                 this.state.result.map((result, index) => (
                   <SearchResult result={result} indexId={index} key={index} />
                 ))
               ) : (
                 <NoMatchFound />
+                // <CitaionIndex />
               )}
+              </Loader>
             </div>
           </div>
         </div>
@@ -144,6 +136,25 @@ class Search extends Component {
         </div>
       </div>
     );
+  }
+  componentDidMount() {
+    let id = decodeURIComponent(this.props.match.params.id);
+    console.log(id);
+    if (id !== undefined) {
+      id = id.split("=");
+      id = id[1];
+      console.log(id);
+      let url = encodeURIComponent(
+        `http://mjl.clarivate.com/cgi-bin/jrnlst/jlresults.cgi?PC=${id}`
+      );
+      if (url !== "undefined" && url !== undefined) {
+        console.log(url);
+        let that = this;
+        that.setState(() => ({ loaded: false }));
+        return this.searchJournal(url);
+        console.log("Mounted");
+      }
+    }
   }
 }
 
