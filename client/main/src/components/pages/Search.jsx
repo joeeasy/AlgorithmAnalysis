@@ -4,6 +4,7 @@ import axios from "axios";
 import SearchResult from "./functional/SearchResult";
 import NoMatchFound from "./functional/NoMatchFound";
 import Loader from "react-loader";
+import CitaionIndex from "./CitationIndex";
 
 var options = {
   lines: 13,
@@ -100,7 +101,8 @@ class Search extends Component {
                   <SearchResult result={result} indexId={index} key={index} />
                 ))
               ) : (
-                <NoMatchFound />
+                // <NoMatchFound />
+                <CitaionIndex />
               )}
             </div>
           </div>
@@ -136,17 +138,22 @@ class Search extends Component {
     );
   }
   componentDidMount() {
-    let url = encodeURIComponent(
-      `http://mjl.clarivate.com/cgi-bin/jrnlst/jlresults.cgi?PC=${encodeURIComponent(
-        this.props.match.params.id
-      ).slice(-2)}`
-    );
-    if (url !== "undefined" && url !== undefined) {
-      console.log(url);
-      let that = this;
-      that.setState(() => ({ loaded: false }));
-      return this.searchJournal(url);
-      console.log("Mounted");
+    let id = decodeURIComponent(this.props.match.params.id);
+    console.log(id);
+    if (id !== undefined) {
+      id = id.split("=");
+      id = id[1];
+      console.log(id);
+      let url = encodeURIComponent(
+        `http://mjl.clarivate.com/cgi-bin/jrnlst/jlresults.cgi?PC=${id}`
+      );
+      if (url !== "undefined" && url !== undefined) {
+        console.log(url);
+        let that = this;
+        that.setState(() => ({ loaded: false }));
+        return this.searchJournal(url);
+        console.log("Mounted");
+      }
     }
   }
 }
