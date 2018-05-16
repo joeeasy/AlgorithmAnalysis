@@ -20,12 +20,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // // parse application/json
 app.use(bodyParser.json())
  
-app.use(function (req, res) {
-  res.setHeader('Content-Type', 'text/plain')
-  res.write('you posted:\n')
-  res.end(JSON.stringify(req.body, null, 2))
-});
-
 // load static files=============
 app.use(express.static(path.resolve(__dirname, '../../client/public')));
 // =============================
