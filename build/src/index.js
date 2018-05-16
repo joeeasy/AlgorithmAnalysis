@@ -50,12 +50,6 @@ app.use(_bodyParser2.default.urlencoded({ extended: false }));
 // // parse application/json
 app.use(_bodyParser2.default.json());
 
-app.use(function (req, res) {
-  res.setHeader('Content-Type', 'text/plain');
-  res.write('you posted:\n');
-  res.end(JSON.stringify(req.body, null, 2));
-});
-
 // load static files=============
 app.use(_express2.default.static(_path2.default.resolve(__dirname, '../../client/public')));
 // =============================

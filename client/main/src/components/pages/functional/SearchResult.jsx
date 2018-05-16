@@ -19,7 +19,7 @@ class SearchResult extends Component {
       case "Emerging Sources Citation Index":
         return "Medical Citation Index";
       default:
-        return "Other Citation Index";
+        "Other Citation Index";
     }
   }
   render() {

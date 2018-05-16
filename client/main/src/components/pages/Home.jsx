@@ -4,7 +4,10 @@ const Home = () => (
   <div>
     <div
       className="g-fullheight--md js__parallax-window"
-      style={{ background: "url(img/1920x1080/02.jpg) 50% 0 no-repeat fixed" }}
+      style={{
+        background:
+          "url(/img/1920x1080/06.jpg) 50% 0 no-repeat fixed, linear-gradient(#eb01a5, #d13531)"
+      }}
     >
       <div className="g-container--md g-text-center--xs g-ver-center--md g-padding-y-150--xs g-padding-y-0--md">
         <div className="g-margin-b-60--xs">
@@ -35,7 +38,7 @@ const Home = () => (
             Find Citation
           </a>
         </span>
-      </div>
+      </div>search
     </div>
 
     {/* // <!--========== PAGE CONTENT ==========--> */}
@@ -71,8 +74,8 @@ const Home = () => (
               </h3>
               <p className="g-margin-b-0--xs">
                 {" "}
-                covers the business and resources on the study of biological
-                sciences in the areas of Chemistry in...
+                covers the business asearchnd resources on the study of
+                biological sciences in the areas of Chemistry in...
                 <a href="#">Learn More ></a>
               </p>
             </div>
