@@ -5,8 +5,7 @@ const Home = () => (
     <div
       className="g-fullheight--md js__parallax-window"
       style={{
-        background:
-          "url(/img/1920x1080/06.jpg) 50% 0 no-repeat fixed, linear-gradient(#eb01a5, #d13531)"
+        background: "url(/img/1920x1080/06.jpg) 50% 0 no-repeat fixed"
       }}
     >
       <div className="g-container--md g-text-center--xs g-ver-center--md g-padding-y-150--xs g-padding-y-0--md">
