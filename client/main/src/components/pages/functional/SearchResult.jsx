@@ -14,10 +14,8 @@ class SearchResult extends Component {
       case "Social Sciences Citation Index":
         return "Algorithm Science And Art Citation Index";
       // expected output: "Mangoes and papayas are $2.79 a pound."
-      case "Science Citation Index":
-        return "Scholar Citation Index";
-      case "Emerging Sources Citation Index":
-        return "Medical Citation Index";
+      case "Current Contents - Clinical Medicine":
+        return "Algorithm Medical Citation Index (AMCI)";
       default:
         "Other Citation Index";
     }
