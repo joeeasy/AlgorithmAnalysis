@@ -12,7 +12,7 @@ class SearchResult extends Component {
       case "Social & Behavioral Sciences":
         return "Algorithm Science Citation Index";
       case "Social Sciences Citation Index":
-        return "Algorithm Science And Art Citation Index";
+        return "Algorithm Social Sciences and Arts Citation Index (ASSACI)";
       // expected output: "Mangoes and papayas are $2.79 a pound."
       case "Current Contents - Clinical Medicine":
         return "Algorithm Medical Citation Index (AMCI)";
