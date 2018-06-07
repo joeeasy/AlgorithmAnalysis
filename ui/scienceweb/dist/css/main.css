@@ -81,8 +81,8 @@ TABLE OF CONTENTS
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
   --breakpoint-xxl: 1450px;
-  --font-family-sans-serif: "Avenir Next W01", "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-family-sans-serif: "LATO" , sans-serif;
+   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 *,
@@ -111,8 +111,8 @@ article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, s
 
 body {
   margin: 0;
-  font-family: "Avenir Next W01", "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.9rem;
+  font-family: "LATO" , sans-serif;
+   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.5;
   color: #3E4B5B;
@@ -414,8 +414,8 @@ template {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
-  font-family: "Avenir Next W01", "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-weight: 500;
+  font-family: "LATO" , sans-serif;
+   font-weight: 500;
   line-height: 1.2;
   color: #334152;
 }
@@ -468,7 +468,7 @@ h6, .h6 {
 }
 
 .display-4 {
-  font-size: 3.5rem;
+  font-size: 2rem;
   font-weight: 300;
   line-height: 1.2;
 }
@@ -2237,7 +2237,7 @@ pre code {
   color: #495057;
   background-color: #fff;
   background-clip: padding-box;
-  border: 2px solid #dde2ec;
+  border: 1px solid #dde2ec;
   border-radius: 4px;
   -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
@@ -4929,8 +4929,8 @@ button.close {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Avenir Next W01", "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-style: normal;
+  font-family: "LATO" , sans-serif;
+   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
   text-align: left;
@@ -5042,8 +5042,8 @@ button.close {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Avenir Next W01", "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-style: normal;
+  font-family: "LATO" , sans-serif;
+   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
   text-align: left;
@@ -5500,7 +5500,7 @@ button.bg-danger:focus {
 }
 
 .bg-light {
-  background-color: #f8f9fa !important;
+  background-color: #f1f1f1 !important;
 }
 
 a.bg-light:hover, a.bg-light:focus,
@@ -5592,11 +5592,11 @@ button.bg-dark:focus {
 }
 
 .border-light {
-  border-color: #f8f9fa !important;
+  border-color: #f1f1f1 !important;
 }
 
 .border-dark {
-  border-color: #343a40 !important;
+  border-color: #ebecee !important;
 }
 
 .border-white {
@@ -9115,8 +9115,8 @@ label {
 }
 
 button, input, optgroup, select, textarea {
-  font-family: "Avenir Next W01", "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-weight: 400;
+  font-family: "LATO" , sans-serif;
+   font-weight: 400;
 }
 
 .form-control.rounded {
@@ -9342,8 +9342,8 @@ legend:before {
 
 .nav.bigger {
   font-size: 1.25rem;
-  font-family: "Avenir Next W01", "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-weight: 500;
+  font-family: "LATO" , sans-serif;
+   font-weight: 500;
 }
 
 .nav.bigger.nav-tabs .nav-link.active:after,
@@ -9361,8 +9361,8 @@ legend:before {
 
 .nav.upper {
   font-size: 0.9rem;
-  font-family: "Avenir Next W01", "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-weight: 500;
+  font-family: "LATO" , sans-serif;
+   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -9675,8 +9675,8 @@ legend:before {
 }
 
 .btn, .all-wrapper .fc-button {
-  font-family: "Avenir Next W01", "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-weight: 400;
+  font-family: "LATO" , sans-serif;
+   font-weight: 400;
   outline: none;
   line-height: 1;
 }
@@ -10196,8 +10196,8 @@ legend:before {
 body .daterangepicker {
   -webkit-box-shadow: 3px 25px 50px rgba(77, 76, 132, 0.34);
           box-shadow: 3px 25px 50px rgba(77, 76, 132, 0.34);
-  font-family: "Avenir Next W01", "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  border: none;
+  font-family: "LATO" , sans-serif;
+   border: none;
   padding: 15px;
   min-width: 540px;
 }
@@ -11058,7 +11058,7 @@ body.full-screen .menu-position-side .logged-user-menu {
 
 b,
 strong {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .all-wrapper {
@@ -12357,8 +12357,8 @@ body.menu-side-right .layout-w {
   letter-spacing: -0.5px;
   white-space: nowrap;
   overflow: hidden;
-  font-family: "Avenir Next W01", "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-weight: 500;
+  font-family: "LATO" , sans-serif;
+   font-weight: 500;
 }
 
 .menu-w.sub-menu-style-over .sub-menu-w .sub-menu-icon {
@@ -12803,7 +12803,7 @@ body.menu-side-right .layout-w {
   border: none;
   -webkit-box-shadow: none;
           box-shadow: none;
-  border-radius: 30px;
+  border-radius:0px;
   padding: 8px 15px 8px 40px;
   display: block;
   width: 100%;
@@ -14379,12 +14379,12 @@ body.menu-side-right .layout-w {
 }
 
 .element-wrapper .element-search input {
-  border: none;
+  border:1px solid #f1f1f1;
   -webkit-box-shadow: none;
           box-shadow: none;
   background-color: #f1f1f1;
-  border-radius: 30px;
-  padding: 10px 15px 10px 50px;
+  /* border-radius: 30px; */
+  padding: 6px 1px 6px 50px;
   display: block;
   width: 100%;
   outline: none;
@@ -14475,8 +14475,8 @@ body.menu-side-right .layout-w {
 .el-tablo .value {
   font-size: 2.43rem;
   font-weight: 500;
-  font-family: "Avenir Next W01", "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  letter-spacing: 1px;
+  font-family: "LATO" , sans-serif;
+   letter-spacing: 1px;
   line-height: 1.2;
   display: inline-block;
   vertical-align: middle;
@@ -15118,8 +15118,8 @@ a.el-tablo:hover .label {
  #10. Invoice
 */
 .invoice-w {
-  font-family: "Avenir Next W01", "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  max-width: 800px;
+  font-family: "LATO" , sans-serif;
+   max-width: 800px;
   position: relative;
   overflow: hidden;
   padding: 100px;
@@ -19308,8 +19308,8 @@ Pricing Plans Styles
   font-size: 1.5rem;
   color: #047bf8;
   font-weight: 500;
-  font-family: "Avenir Next W01", "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  padding-bottom: 40px;
+  font-family: "LATO" , sans-serif;
+   padding-bottom: 40px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -24238,8 +24238,8 @@ body.rentals-wrapper .select2-container--default .select2-results__option[aria-s
 
 .search-with-suggestions-w .search-suggestions-group .ssg-header .ssg-name {
   color: #047bf8;
-  font-family: "Avenir Next W01", "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-weight: 500;
+  font-family: "LATO" , sans-serif;
+   font-weight: 500;
   font-size: 0.99rem;
 }
 
@@ -24611,8 +24611,8 @@ body.rentals-wrapper .select2-container--default .select2-results__option[aria-s
 
 .floated-customizer-panel .fcp-header {
   font-weight: 500;
-  font-family: "Avenir Next W01", "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  padding: 10px 0px;
+  font-family: "LATO" , sans-serif;
+   padding: 10px 0px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   margin-bottom: 20px;
   color: #334152;
@@ -24644,8 +24644,8 @@ body.rentals-wrapper .select2-container--default .select2-results__option[aria-s
 .floated-customizer-panel .fcp-content .fcp-group-header {
   color: #047bf8;
   font-weight: 500;
-  font-family: "Avenir Next W01", "Proxima Nova W01", "Rubik", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  letter-spacing: 1px;
+  font-family: "LATO" , sans-serif;
+   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 0.8rem;
   margin-bottom: 15px;
