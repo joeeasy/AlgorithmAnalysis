@@ -1,0 +1,26 @@
+doctype html
+html
+  include layouts/head.pug
+  body.auth-wrapper
+    .all-wrapper.menu-side.with-pattern
+      .auth-box-w
+        .logo-w
+          a(href='index.html')
+            img(alt='', src='/sciencewebassets/assets/img/logo-big.png')
+        h4.auth-header
+          | Login To Science Web
+        form(action='')
+          .form-group
+            label(for='') Email address
+            input.form-control(type='email', placeholder='Enter your email')
+            .pre-icon.os-icon.os-icon-user-male-circle
+          .form-group
+            label(for='') Password
+            input.form-control(placeholder='Enter your password', type='password')
+            .pre-icon.os-icon.os-icon-fingerprint
+          .buttons-w
+            button.btn.btn-primary Log in
+            .form-check-inline
+              label.form-check-label
+                input.form-check-input(type='checkbox')
+                | Remember Me

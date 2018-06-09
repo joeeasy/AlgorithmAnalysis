@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../server/src/route/index.js"],"names":["scrapRoute"],"mappings":";;;;;;;AAAA;;;;;;QAEQA,U,GAAAA,kB","file":"index.js","sourcesContent":["import scrapRoute from './scrapper/scrapper';\n\nexport {scrapRoute}"]}
