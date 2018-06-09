@@ -37,7 +37,7 @@ const Home = () => (
             Find Citation
           </a>
         </span>
-      </div>search
+      </div>
     </div>
 
     {/* // <!--========== PAGE CONTENT ==========--> */}

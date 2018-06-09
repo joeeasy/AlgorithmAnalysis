@@ -1,0 +1,237 @@
+extends layouts/head.pug
+block appContent
+  body.menu-position-side.menu-side-left.full-screen
+    .all-wrapper.solid-bg-all
+      //
+        ------------------
+        START - Top Bar
+        ------------------
+      .top-bar.color-scheme-bright
+        .logo-w.menu-size
+          a.logo(href='index.html')
+            // <div cla/ss="logo-element"></div>
+            img(src='img/logo2.png', alt='')
+            .logo-label
+              | Science Web
+        //
+          ------------------
+          START - Top Menu Controls
+          ------------------
+        .top-menu-controls
+          //
+            ------------------
+            END - Messages Link in secondary top menu
+            ------------------
+          //
+            ------------------
+            START - Settings Link in secondary top menu
+            ------------------
+          //
+            ------------------
+            END - Settings Link in secondary top menu
+            ------------------
+          //
+            ------------------
+            START - User avatar and menu in secondary top menu
+            ------------------
+          //
+            ------------------
+            END - User avatar and menu in secondary top menu
+            ------------------
+        //
+          ------------------
+          END - Top Menu Controls
+          ------------------
+      //
+        ------------------
+        END - Top Bar
+        ------------------
+      .layout-w
+        //
+          ------------------
+          START - Mobile Menu
+          ------------------
+        .menu-mobile.menu-activated-on-click.color-scheme-dark
+          .mm-logo-buttons-w
+            a.mm-logo(href='index.html')
+              img(src='img/logo2.png')
+              span Science Web
+            .mm-buttons
+              .content-panel-open
+                .os-icon.os-icon-grid-circles
+              .mobile-menu-trigger
+                .os-icon.os-icon-hamburger-menu-1
+          .menu-and-user
+            .logged-user-w
+              .avatar-w
+                img(alt='', src='img/avatar1.jpg')
+              .logged-user-info-w
+                .logged-user-name
+                  | Univelcity
+                .logged-user-role
+                  | Administrator
+            //
+              ------------------
+              START - Mobile Menu List
+              ------------------
+            //
+              ------------------
+              END - Mobile Menu List
+              ------------------
+        //
+          ------------------
+          END - Mobile Menu
+          ------------------
+        //
+          ------------------
+          START - Main Menu
+          ------------------
+        .menu-w.color-scheme-light.color-style-transparent.menu-position-side.menu-side-left.menu-layout-compact.sub-menu-style-over.sub-menu-color-bright.selected-menu-color-light.menu-activated-on-hover.menu-has-selected-link.bg-white
+          .logged-user-w.avatar-inline
+            .logged-user-i
+              .avatar-w
+                img(alt='', src='img/avatar1.jpg')
+              .logged-user-info-w
+                .logged-user-name
+                  | Univelcity
+                .logged-user-role
+                  | Administrator
+              .logged-user-toggler-arrow
+                .os-icon.os-icon-chevron-down
+          h1.menu-page-header
+            | Page Header
+          .element-wrapper.bg-white.pt-3
+            .text-center
+              img(src='img/profile_bg1.jpg', alt='', width='200')
+              .mt-3
+                a(href='#') Volume 30, issue 6
+                p November 2006
+            .mt-3
+              h5.text-center.font-weight-bold Article Contents
+              .ml-4.mr-2
+                p Abstract
+                p Introduction
+                p Lorem Puisum fuga necessitatibus
+                p Chemical Properties of lorem Puisum fuga necessitatibus
+        //
+          ------------------
+          END - Main Menu
+          ------------------
+        .content-w
+          .content-i
+            .content-box.bg-white
+              .element-wrapper.compact.pt-4.pb-0
+                .element-actions
+                  a.btn.btn-primary.btn-sm(href='#', data-target='#addUser', data-toggle='modal')
+                    i.os-icon.os-icon-ui-22
+                    span Add User
+                #addUser.onboarding-modal.modal.fade.animated(aria-hidden='true', role='dialog', tabindex='-1')
+                  .modal-dialog.modal-centered(role='document')
+                    .modal-content.text-center
+                      button.close(aria-label='Close', data-dismiss='modal', type='button')
+                        span.close-label Cancel
+                        span.os-icon.os-icon-close
+                      .onboarding-media
+                        .os-icon.os-icon-users.text-primary.font-4x
+                      .onboarding-content.with-gradient
+                        h4.onboarding-title
+                          | Add New user
+                        .onboarding-text
+                          // In this example you can see a form where you can request some additional information from the customer when they land on the app page.
+                        form(action='/')
+                          .row
+                            .col-sm-6
+                              .form-group
+                                label(for='') Full Name
+                                input.form-control(placeholder='Enter your full name...', type='text', value='')
+                            .col-sm-6
+                              .form-group
+                                label(for='') User Role
+                                select.form-control
+                                  option
+                                    | Employee
+                                  option
+                                    | Customer
+                            .col-sm-6
+                              .form-group
+                                label(for='') Email
+                                input.form-control(type='email', placeholder='Email address')
+                            .col-sm-6
+                              .form-group
+                                label(for='') Phone
+                                input.form-control(type='tel', placeholder='Phone no.')
+                            .col-sm-6
+                              .form-group
+                                label(for='') Address
+                                input.form-control(type='text', placeholder='Address')
+                            .col-sm-6
+                              .form-group
+                                label(for='') Company
+                                input.form-control(type='text', placeholder='Company...')
+                            .modal-footer
+                              button.btn.btn-secondary(data-dismiss='modal', type='button')  Close
+                              button.btn.btn-primary(type='submit')  Save
+                h6.element-header
+                  | Search Details
+              .container
+                .row.mt-5
+                  .col-lg-12.col-xxl-12
+                    p
+                      span.display-4.font-weight-bold
+                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. tempora delectus odit!
+                        | Commodi delen tus odit
+                      sup.bg-danger.text-white.rounded.table.smaller.rounded-circle.p-1.font-weight-light free
+                    p
+                      a.font-weight-bold(href='#') Jonathan Jamie
+                      i.ml-2.os-icon.os-icon-mail
+                    p
+                      | FEMS Microbial Rev (2006) 30 (6) :389-500,
+                      span.ml-4
+                        | DOI :
+                        a(href='#') https://doi.org/108.7.6.8.9/br/8898384.3234.x
+                    p
+                      strong Published :
+                      |  November 2006
+                      select.border-light.ml-2.p-2.font-weight-bold(name='', id='')
+                        option(value='') Activity History
+                        option(value='') Book History
+                    p
+                      i.os-icon.os-icon-window-content
+                      select.border-0.font-weight-bold(name='', id='')
+                        option(value='') Activity History
+                        option(value='') Book History
+                      span.ml-4
+                        i.os-icon.os-icon-file
+                        |                                             PDF File
+                      span.ml-4
+                        i.os-icon.os-icon-basic-1-138-quotes
+                        |                                             Cite
+                      span.ml-4
+                        i.os-icon.os-icon-share-2
+                        select.border-0.font-weight-bold(name='', id='')
+                          option(value='') Share
+                          option(value='') Book History
+                      span.ml-4
+                        i.os-icon.os-icon-settings
+                        select.border-0.font-weight-bold(name='', id='')
+                          option(value='') Tools
+                          option(value='') Book History
+                    hr
+                    .row
+                      .col-lg-12.col-xxl-12
+                        .bg-light.p-5
+                          h5 Abstract
+                          p
+                            | Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui modi, temporibus
+                            | cum quod repellendus dolorem nam fugiat perspiciatis hic non accusamus
+                            | magni ratione assumenda nostrum accusantium voluptates asperiores quae
+                            | iusto! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis
+                            | quia, natus temporibus amet repellendus a eius laboriosam, officiis,
+                            | quidem beatae sint ullam ad magnam. Quis reiciendis praesentium magnam
+                            | minus natus!
+                          p
+                            | Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet eos sint
+                            | dignissimos? Maxime ullam neque e t corporis dolores commodi, blanditiis
+                            | velit laborum consectetur, explicabo ipsam eius quasi distinctio doloremque
+                            | ex.
+          .display-type
