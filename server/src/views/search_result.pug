@@ -1,0 +1,202 @@
+extends layout.pug
+block content
+  .menu-mobile.menu-activated-on-click.color-scheme-dark
+    .mm-logo-buttons-w
+      a.mm-logo(href='index.html')
+        img(src='/sciencewebassets/assets/img/logo2.png')
+        span Science Web
+      .mm-buttons
+        .content-panel-open
+          .os-icon.os-icon-grid-circles
+        .mobile-menu-trigger
+          .os-icon.os-icon-hamburger-menu-1
+    .menu-and-user
+      .logged-user-w
+        .avatar-w
+          img(alt='', src='/sciencewebassets/assets/img/avatar1.jpg')
+        .logged-user-info-w
+          .logged-user-name
+            | Univelcity
+          .logged-user-role
+            | Administrator
+      //
+        ------------------
+        START - Mobile Menu List
+        ------------------
+      //
+        ------------------
+        END - Mobile Menu List
+        ------------------
+  //
+    ------------------
+    END - Mobile Menu
+    ------------------
+  //
+    ------------------
+    START - Main Menu
+    ------------------
+  .menu-w.color-scheme-light.color-style-transparent.menu-position-side.menu-side-left.menu-layout-compact.sub-menu-style-over.sub-menu-color-bright.selected-menu-color-light.menu-activated-on-hover.menu-has-selected-link.bg-white
+    .logged-user-w.avatar-inline
+      .logged-user-i
+        .avatar-w
+          img(alt='', src='/sciencewebassets/assets/img/avatar1.jpg')
+        .logged-user-info-w
+          .logged-user-name
+            | Univelcity
+          .logged-user-role
+            | Administrator
+        .logged-user-toggler-arrow
+          .os-icon.os-icon-chevron-down
+    h1.menu-page-header
+      | Page Header
+    .element-wrapper.bg-white.text-center.pt-3
+      p.mb-0 Results : #{articles.length}
+      small.mt-0
+        i (From Web Of Science Core Collection)
+      .mt-3
+        p
+          i
+            strong You Searched For : TOPIC : 
+            | (#{keyword})
+            //- strong  TOPIC : 
+            //- | (Eating Plantain)  AND 
+            //- strong  YEAR PUBLISHED : 
+            //- |                 (1989-2015) NOT 
+            //- strong  AUTHOR : 
+            //- |  (Jamin)
+  //
+    ------------------
+    END - Main Menu
+    ------------------
+  .content-w
+    .content-i
+      .content-box.bg-white
+        .element-wrapper.compact.pt-4.pb-0
+          .element-actions
+            a.btn.btn-primary.btn-sm(href='#', data-target='#addUser', data-toggle='modal')
+              i.os-icon.os-icon-ui-22
+              span Add User
+          #addUser.onboarding-modal.modal.fade.animated(aria-hidden='true', role='dialog', tabindex='-1')
+            .modal-dialog.modal-centered(role='document')
+              .modal-content.text-center
+                button.close(aria-label='Close', data-dismiss='modal', type='button')
+                  span.close-label Cancel
+                  span.os-icon.os-icon-close
+                .onboarding-media
+                  .os-icon.os-icon-users.text-primary.font-4x
+                .onboarding-content.with-gradient
+                  h4.onboarding-title
+                    | Add New user
+                  .onboarding-text
+                    // In this example you can see a form where you can request some additional information from the customer when they land on the app page.
+                  form(action='/')
+                    .row
+                      .col-sm-6
+                        .form-group
+                          label(for='') Full Name
+                          input.form-control(placeholder='Enter your full name...', type='text', value='')
+                      .col-sm-6
+                        .form-group
+                          label(for='') User Role
+                          select.form-control
+                            option
+                              | Employee
+                            option
+                              | Customer
+                      .col-sm-6
+                        .form-group
+                          label(for='') Email
+                          input.form-control(type='email', placeholder='Email address')
+                      .col-sm-6
+                        .form-group
+                          label(for='') Phone
+                          input.form-control(type='tel', placeholder='Phone no.')
+                      .col-sm-6
+                        .form-group
+                          label(for='') Address
+                          input.form-control(type='text', placeholder='Address')
+                      .col-sm-6
+                        .form-group
+                          label(for='') Company
+                          input.form-control(type='text', placeholder='Company...')
+                      .modal-footer
+                        button.btn.btn-secondary(data-dismiss='modal', type='button')  Close
+                        button.btn.btn-primary(type='submit')  Save
+          h6.element-header
+            | Search Results
+        .container
+        .row.mt-0
+          .col-lg-4.col-xxl-3.mt-0
+            // START - CHART
+            .pt-0.form-group
+              .form-group.row
+                label.col-sm-3.col-form-label.pr-1(for='opt1') Sort By :
+                select.form-control.col-sm-9(name='opt1', id='')
+                  option(value='') Times Cited  - highest to lowest
+                  option(value='') Times Cited  - highest to lowest
+                  option(value='') Times Cited  - highest to lowest
+          .col-lg-3.col-xxl-3
+          .col-lg-6
+        hr.m-0
+        .row.mt-3
+          .col-lg-2.col-xxl-2
+            .pt-0.form-group
+              .form-group
+                input.mr-2(type='checkbox', name='name')
+                label.pr-1(for='page') Select Page :
+          .col-lg-2.col-xxl-2
+            .form-group
+              .form-group
+                a(href='#')
+                  i.os-icon.os-icon-printer.p-4
+                a(href='#')
+                  i.os-icon.os-icon-email-2-at
+          .col-lg-3.col-xxl-3
+            .pt-0.form-group
+              .form-group
+                select.form-control(name='', id='')
+                  option(value='') Save End Note Online
+                  option(value='')
+                  option(value='')
+          .col-lg-3.col-xxl-3
+            .pt-0.form-group
+              .form-group
+                select.form-control(name='', id='')
+                  option(value='') Add to Marked List
+                  option(value='')
+                  option(value='')
+          each article, index in articles
+            .row
+              .col-lg-2.col-xxl-2
+                .pt-0.ml-4.form-group
+                  .form-group
+                    input.mr-2(type='checkbox', name='chk1')
+                    label.abel.pr-1(for='chk1')  #{index + 1} :
+              .col-lg-10.col-xxl-10
+                h6
+                  a(href='/scienceweb/search/'+article._id) #{article.title}
+                p.mb-0 By : #{article.author}
+                p
+                  a.text-uppercase(href='#') #{article.branch}
+                  span.ml-3 Volume: #{article.volume} 
+                  span.ml-3 issued: #{article.issues} 
+                  span.ml-3 Pages: #{article.pages} 
+                  span.ml-3 Published: #{article.publishedDate} 
+                p
+                  a.btn(href='/scienceweb/search/'+article._id) Full Text Option
+                  button.btn.ml-4.text-primary(data-target='#viewAbstract'+index, data-toggle='modal') View Abstracts
+                  .onboarding-modal.modal.fade.animated(aria-hidden='true', role='dialog', tabindex='-1', id="viewAbstract"+index)
+                    .modal-dialog.modal-centered(role='document')
+                      .modal-content.text-center
+                        button.close(aria-label='Close', data-dismiss='modal', type='button')
+                          span.close-label Cancel
+                          span.os-icon.os-icon-close
+                        .onboarding-media
+                        .onboarding-content.with-gradient
+                          h4.onboarding-title
+                            | Abstract
+                          .row
+                            .col-sm-12
+                              p #{article.abstract}
+      .display-type
+    include layouts/scripts.pug

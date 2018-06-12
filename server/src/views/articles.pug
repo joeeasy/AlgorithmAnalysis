@@ -1,0 +1,47 @@
+extends layout.pug
+block content
+  .container
+    
+    .section-heading.centered
+      h1
+        | Articles
+      p
+        | Articles On Science Web
+    div.table-responsive
+      table#dataTable1.table.table-striped.table-lightfont
+        tr
+          each article, index in articles
+            .row
+              .col-lg-2.col-xxl-2
+                .pt-0.ml-4.form-group
+                  .form-group
+                    input.mr-2(type='checkbox', name='chk1')
+                    label.abel.pr-1(for='chk1')  #{index + 1} :
+              .col-lg-10.col-xxl-10
+                h6
+                  a(href='/scienceweb/search/'+article._id) #{article.title}
+                p.mb-0 By : #{article.author}
+                p
+                  a.text-uppercase(href='#') #{article.branch}
+                  span.ml-3 Volume: #{article.volume} 
+                  span.ml-3 issued: #{article.issues} 
+                  span.ml-3 Pages: #{article.pages} 
+                  span.ml-3 Published: #{article.publishedDate} 
+                p
+                  a.btn(href='/scienceweb/search/'+article._id) Full Text Option
+                  button.btn.ml-4.text-primary(data-target='#viewAbstract'+index, data-toggle='modal') View Abstracts
+                  .onboarding-modal.modal.fade.animated(aria-hidden='true', role='dialog', tabindex='-1', id="viewAbstract"+index)
+                    .modal-dialog.modal-centered(role='document')
+                      .modal-content.text-center
+                        button.close(aria-label='Close', data-dismiss='modal', type='button')
+                          span.close-label Cancel
+                          span.os-icon.os-icon-close
+                        .onboarding-media
+                        .onboarding-content.with-gradient
+                          h4.onboarding-title
+                            | Abstract
+                          .row
+                            .col-sm-12
+                              p #{article.abstract}
+
+                  hr(style='width: 100%')

@@ -1,166 +1,118 @@
-doctype html
-html
-  include layouts/head.pug
-  body.menu-position-side.menu-side-left.full-screen
-    .all-wrapper.solid-bg-all
+extends layout.pug
+block content
+  //
+    ------------------
+    START - Mobile Menu
+    ------------------
+  .menu-mobile.menu-activated-on-click.color-scheme-dark
+    .mm-logo-buttons-w
+      a.mm-logo(href='index.html')
+        img(src='/sciencewebassets/assets/img/logo2.png')
+        span Science Web
+      .mm-buttons
+        .content-panel-open
+          .os-icon.os-icon-grid-circles
+        .mobile-menu-trigger
+          .os-icon.os-icon-hamburger-menu-1
+    .menu-and-user
+      .logged-user-w
+        .avatar-w
+          img(alt='', src='/sciencewebassets/assets/img/avatar1.jpg')
+        .logged-user-info-w
+          .logged-user-name
+            | Univelcity
+          .logged-user-role
+            | Administrator
       //
         ------------------
-        START - Top Bar
+        START - Mobile Menu List
         ------------------
-      .top-bar.color-scheme-bright
-        .logo-w.menu-size
-          a.logo(href='index.html')
-            // <div cla/ss="logo-element"></div>
-            img(src='/sciencewebassets/assets/img/logo2.png', alt='')
-            .logo-label
-              | Science Web
-        //
-          ------------------
-          START - Top Menu Controls
-          ------------------
-        .top-menu-controls
-          //
-            ------------------
-            END - Messages Link in secondary top menu
-            ------------------
-          //
-            ------------------
-            START - Settings Link in secondary top menu
-            ------------------
-          //
-            ------------------
-            END - Settings Link in secondary top menu
-            ------------------
-          //
-            ------------------
-            START - User avatar and menu in secondary top menu
-            ------------------
-          //
-            ------------------
-            END - User avatar and menu in secondary top menu
-            ------------------
-        //
-          ------------------
-          END - Top Menu Controls
-          ------------------
       //
         ------------------
-        END - Top Bar
+        END - Mobile Menu List
         ------------------
-      .layout-w
-        //
-          ------------------
-          START - Mobile Menu
-          ------------------
-        .menu-mobile.menu-activated-on-click.color-scheme-dark
-          .mm-logo-buttons-w
-            a.mm-logo(href='index.html')
-              img(src='/sciencewebassets/assets/img/logo2.png')
-              span Science Web
-            .mm-buttons
-              .content-panel-open
-                .os-icon.os-icon-grid-circles
-              .mobile-menu-trigger
-                .os-icon.os-icon-hamburger-menu-1
-          .menu-and-user
-            .logged-user-w
-              .avatar-w
-                img(alt='', src='/sciencewebassets/assets/img/avatar1.jpg')
-              .logged-user-info-w
-                .logged-user-name
-                  | Univelcity
-                .logged-user-role
-                  | Administrator
-            //
-              ------------------
-              START - Mobile Menu List
-              ------------------
-            //
-              ------------------
-              END - Mobile Menu List
-              ------------------
-        //
-          ------------------
-          END - Mobile Menu
-          ------------------
-        //
-          ------------------
-          START - Main Menu
-          ------------------
-        .container
-          .invoice-w(style='margin: 0 auto')
-            .infos
-              .info-1
-                .invoice-logo-w
-                  img(height='60', alt='', src='/sciencewebassets/assets/img/logo.png')
-                .company-name
-                  | Science Web
-                .company-address
-                  | 47 Countrylane Ave,
-                  br
-                  | Los Angeles, CA 97446
-                  br
-                  | United States
-                .company-extra
-                  | tel. 858.745.5577
-              .info-2
-                .company-name
-                  | Client Inc
-                .company-address
-                  | 210 Benson Lane, Suite 430
-                  br
-                  | Queens, NY 11243
-                  br
-                  | United States
-            .invoice-heading
-              h3
-                | Payment summary
-              .invoice-date
-                | 22 December 2017
-            .invoice-body
-              .invoice-desc
-                .desc-label
-                  | Invoice #
-                .desc-value
-                  | HSFB 342823
-              .invoice-table
-                table.table
-                  thead
-                    tr
-                      th
-                        | Description
-                      th
-                        | Months
-                      th.text-right
-                        | Price
-                  tbody
-                    tr
-                      td
-                        | Science Web Subscription
-                      td
-                        | 2
-                      td.text-right
-                        | $4,500
-                  tfoot
-                    tr
-                      td
-                        | Total
-                      td.text-right(colspan='2')
-                        | $4,500
-                .terms
-                  .terms-header
-                    | Terms and Conditions
-                  .terms-content
-                    | Should be paid as soon as received, otherwise a 5% penalty fee is applied
-            .invoice-footer
-              .invoice-logo
-                img(alt='', src='/sciencewebassets/assets/img/logo.png')
-                span Algorithm Analysis
-              .invoice-info
-                span hello@paper.inc
-                span 858.757.4455
-            form(action='/scienceweb')
-              button.btn.btn-primary.btn-rounded.btn-block(type="submit") Pay and Continue.
-        .display-type
-    include layouts/scripts.pug
+  //
+    ------------------
+    END - Mobile Menu
+    ------------------
+  //
+    ------------------
+    START - Main Menu
+    ------------------
+  .container
+    .invoice-w(style='margin: 0 auto')
+      .infos
+        .info-1
+          .invoice-logo-w
+            img(height='60', alt='', src='/sciencewebassets/assets/img/logo.png')
+          .company-name
+            | Science Web
+          .company-address
+            | 47 Countrylane Ave,
+            br
+            | Los Angeles, CA 97446
+            br
+            | United States
+          .company-extra
+            | tel. 858.745.5577
+        .info-2
+          .company-name
+            | Client Inc
+          .company-address
+            | 210 Benson Lane, Suite 430
+            br
+            | Queens, NY 11243
+            br
+            | United States
+      .invoice-heading
+        h3
+          | Payment summary
+        .invoice-date
+          | 22 December 2017
+      .invoice-body
+        .invoice-desc
+          .desc-label
+            | Invoice #
+          .desc-value
+            | HSFB 342823
+        .invoice-table
+          table.table
+            thead
+              tr
+                th
+                  | Description
+                th
+                  | Months
+                th.text-right
+                  | Price
+            tbody
+              tr
+                td
+                  | Science Web Subscription
+                td
+                  | 2
+                td.text-right
+                  | $4,500
+            tfoot
+              tr
+                td
+                  | Total
+                td.text-right(colspan='2')
+                  | $4,500
+          .terms
+            .terms-header
+              | Terms and Conditions
+            .terms-content
+              | Should be paid as soon as received, otherwise a 5% penalty fee is applied
+      .invoice-footer
+        .invoice-logo
+          img(alt='', src='/sciencewebassets/assets/img/logo.png')
+          span Algorithm Analysis
+        .invoice-info
+          span hello@paper.inc
+          span 858.757.4455
+      form(action='/scienceweb')
+        button.btn.btn-primary.btn-rounded.btn-block(type="submit") Pay and Continue.
+  .display-type
+
   
