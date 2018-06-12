@@ -8,22 +8,9 @@ import webpack from 'webpack';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackConfig from '../../webpack.config';
 // import { scrapeRoute } from './route/index';
-import session  from 'express-session';
-import expressValidator from 'express-validator';
-import flash from 'connect-flash';
 import pug from 'pug';
 import mongoose from 'mongoose';
 import Article from './models/articles';
-import cloudinary from 'cloudinary';
-import upload from 'express-fileupload';
-
-// cloudinary configuration
-cloudinary.config({ 
-  cloud_name: 'dsxfchez8', 
-  api_key: '557836499496183', 
-  api_secret: 'PKUHg16h73APhZPubaRw25mfbdE' 
-});
-
 
 const mongoDB = 'mongodb://root:test123@ds255260.mlab.com:55260/algorithmanalysis';
 // database connection
@@ -42,29 +29,10 @@ const app = express();
 const Port = process.env.PORT || 5000;
 // console.log(process.env)
 
-// Express session
-// app.set('trust proxy', 1) // trust first proxy
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
-}));
-
-// Express message
-app.use(flash());
-app.use((req, res, next) => {
-  res.locals.messages = require('express-messages')(req, res);
-  next();
-});
-
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
   extended: false
 }))
-
-// file upload
-app.use(upload());
 
 // // parse application/json
 app.use(bodyParser.json())
@@ -153,24 +121,14 @@ app.get('/scienceweb/pricing', (req, res) => res.render('pricing'));
 app.get('/scienceweb/institution-signup/:price', (req, res) => res.render('register'));
 app.get('/scienceweb/payment_summary', (req, res) => res.render('payment_summary'));
 app.get('/scienceweb/searchResult', (req, res) => res.render('search_result'));
-app.get('/scienceweb/search/:articleID', (req, res) => {
-  Article.find({_id: req.params.articleID},(err, articles) => {
-    res.render('search_details', {articles})
-  })
-});
+app.get('/scienceweb/search/:articleTitle', (req, res) => res.render('search_details'));
 app.get('/scienceweb/addArticle', (req, res) => res.render('addarticle'));
-app.get('/scienceweb/articles', (req, res) =>{
-  Article.find((err, articles) => {
-    // console.log(articles);
-    res.render('articles', {articles});
-  });
-  
-});
+app.get('/scienceweb/articles', (req, res) => res.render('articles'));
 
-// POST ROUTES creating articles
+// POST ROUTES
 app.post('/scienceweb/addArticle', (req, res) => {
-  if (!req.files)
-    return res.status(400).send('No files were uploaded.');
+  console.log(req.body);
+  res.redirect('/scienceweb')
  
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
   let image = req.files.thumbnail;
@@ -221,9 +179,5 @@ app.post('/scienceweb/searchResult', (req, res) => {
         articles.push(art);
       }
     })
-    console.log(articles);
-    res.render('search_result', {articles, keyword});
-  });
-});
 
 app.listen(Port, (req, res) => console.log('server started http://localhost:' + Port));

@@ -1,0 +1,69 @@
+extends layout.pug
+block content
+  .container
+    .section-heading.centered
+      h1
+        | Add Articles
+      p
+        | Add Article To Science Web
+    each article in articles
+      form#formValidate.margin-bottom(action='/scienceweb/article/edit', method='POST')
+        .form-desc.margin__top--10
+          | Please Take Sometime To Fill in the required fields
+        .row
+          .col-sm-6
+            .form-group
+              label(for='')  Article Title
+              input.form-control(data-error='Article Title Is Required', placeholder='Article Title', required='required', type='text', name='articleTitle', value=article.title)
+              .help-block.form-text.with-errors.form-control-feedback
+          .col-sm-6
+            .form-group
+              label(for='') Authors Name
+              input.form-control(data-error='Please enter author name', placeholder='Author Name', required='required', type='text', name='authorname', value=article.author)
+              .help-block.form-text.with-errors.form-control-feedback
+        .form-group
+          label(for='')  Branch
+          input.form-control(data-error='Format is invalid', placeholder='E.g Biology, seperated by commma', required='required', type='text', name='branch', value=article.branch)
+          .help-block.form-text.with-errors.form-control-feedback
+        .form-group
+          label(for='')  Stable URL
+          input.form-control(data-error='This field is required', placeholder='eg http://example.com/123', required='required', type='text' name='roi', value=article.roi)
+          .help-block.form-text.with-errors.form-control-feedback
+        .row
+          .col-sm-4
+            .form-group
+              label(for='')  Volume
+              input.form-control(data-error='No of volume is required' placeholder='Volume eg(34)', required='required', type='number', name='volume', value=article.volume)
+    
+          .col-sm-4
+            .form-group
+              label(for='')  Issues
+              input.form-control( placeholder='Issues eg(4)', required='required', type='number', name='issues',  value=article.issues)
+          .col-sm-4
+            .form-group
+              label(for='')  Pages
+              input.form-control(data-error='NO of pages is required' placeholder='Pages eg(300)', required='required', type='number', name='pages',  value=article.pages)
+        fieldset.form-group
+          .form-group
+            label(for='') Published Date
+            input.single-daterange.form-control(type='text', value=article.publishedDate, required='required', name='publishedDate')
+          .form-group
+            label(for='') Table Of content(Please seperate with ' , ')
+            input.form-control(data-error='invalid format eg(Biology, science, education)' type='text', placeholder='Table Of Content', required='required', name='tcontent',  value=article.articleContent)
+          .form-group
+            label  Abstract
+            textarea.form-control(data-error='Abstract content is required' name='abstract', rows='10', required='required') #{article.articleContent}
+          .row
+            .col-sm-6
+              .form-group
+                label Article thumbnail
+                  input.form-control(type='file', data-error='A thumbnail image is required', placeholder='Article thumbnail', accept=".jpg, .jpeg, .png", required='required', name='thumbnail')
+                .help-block.form-text.with-errors.form-control-feedback
+            .col-sm-6
+              .form-group
+                label Submmit Paper(PDF, DOCX)
+                  input.form-control(type='file', data-error='A document is expected', placeholder='Article thumbnail', accept=".pdf, .docx, .txt", required='required', name='paper')
+                .help-block.form-text.with-errors.form-control-feedback
+        .form-buttons-w.margin-bottom
+          button.btn.btn-primary(type='submit')  Submit Article
+        br
