@@ -10,7 +10,7 @@ const articlesSchema = new Schema({
   issues: {type:Number, required: true},
   pages: {type:Number, required: true},
   publishedDate: {type:String, required: true},
-  articleContent: {type:[String], required: true},
+  articleContent: {type:String, required: true},
   abstract: {type:String, required: true},
   thumbnail: {type:Buffer, required: true},
   paper: {type:Buffer, required: true},

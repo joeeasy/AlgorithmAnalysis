@@ -216,13 +216,60 @@ app.post('/scienceweb/searchResult', (req, res) => {
   let articles = [];
   Article.find( (err, arts) => {
     arts.filter(art => {
-      console.log(art.title)
+      // console.log(art.title)
      if( art.title.includes(keyword)) {
         articles.push(art);
       }
     })
-    console.log(articles);
+    // console.log(articles);
     res.render('search_result', {articles, keyword});
+  });
+});
+
+// EDIT ARTICLE
+app.get('/scienceweb/article/edit', (req, res) => {
+  let id = req.query.articleId;
+  Article.find({_id: id}, (err, articles) => {
+    res.render('editArticle', {articles})
+  })
+});
+
+// UPDATE EDITTED ARTICLES
+app.post('/scienceweb/article/update', (req, res) => {
+  // console.log(req.params.id);
+
+  let id = req.body.id;
+  let articleModified = {
+    title: req.body.articleTitle,
+    author:  req.body.authorname,
+    branch:  req.body.branch,
+    volume:  req.body.volume,
+    issues:  req.body.issues,
+    pages:  req.body.pages,
+    publishedDate:  req.body.publishedDate,
+    articleContent:  req.body.tcontent,
+    abstract:  req.body.abstract,
+    thumbnail: req.body.thumbnail,
+    paper: req.body.paper,
+    roi: req.body.roi
+  }
+  Article.updateOne({ _id: id }, articleModified, function(err, res) {
+    console.log(res);
+
+  });
+  res.redirect('/scienceweb/articles');
+});
+
+//DELETE ARTICLE
+app.post('/scienceweb/article/delete', (req, res) => {
+  let id = req.body.id;
+  Article.deleteOne({ _id: id }, (err) => {
+    if (err) return handleError(err);
+    
+    // deleted at most one tank document
+    res.redirect('/scienceweb/articles');
+    console.log('success');
+
   });
 });
 
