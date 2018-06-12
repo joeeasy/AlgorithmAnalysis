@@ -57,12 +57,12 @@ block content
             .col-sm-6
               .form-group
                 label Article thumbnail
-                  input.form-control(type='file', data-error='A thumbnail image is required', placeholder='Article thumbnail', accept=".jpg, .jpeg, .png", required='required', name='thumbnail')
+                  input.form-control(type='file', data-error='A thumbnail image is required', placeholder='Article thumbnail', accept=".jpg, .jpeg, .png", required='required', name='thumbnail', value=article.thumbnail)
                 .help-block.form-text.with-errors.form-control-feedback
             .col-sm-6
               .form-group
                 label Submmit Paper(PDF, DOCX)
-                  input.form-control(type='file', data-error='A document is expected', placeholder='Article thumbnail', accept=".pdf, .docx, .txt", required='required', name='paper')
+                  input.form-control(type='file', data-error='A document is expected', placeholder='Article thumbnail', accept=".pdf, .docx, .txt", required='required', name='paper', value=article.paper)
                 .help-block.form-text.with-errors.form-control-feedback
               input(type="hidden", name='id', value=article._id)
         .form-buttons-w.margin-bottom

@@ -253,20 +253,24 @@ app.post('/scienceweb/article/update', (req, res) => {
     paper: req.body.paper,
     roi: req.body.roi
   }
-  Article.findById(id, (err, article) => {
-    if (!article)
-    return next(new Error('Could not load Document'));
-    else {
-      // do your updates here
-      article = articleModified;
-      article.save(function(err) {
-        if (err)
-          console.log('error')
-        else
-          console.log('success')
-      });
-    }
+  Article.updateOne({ _id: id }, articleModified, function(err, res) {
+    console.log(res);
+
   });
   res.redirect('/scienceweb/articles');
-})
+});
+
+//DELETE ARTICLE
+app.post('/scienceweb/article/delete', (req, res) => {
+  let id = req.body.id;
+  Article.deleteOne({ _id: id }, (err) => {
+    if (err) return handleError(err);
+    
+    // deleted at most one tank document
+    res.redirect('/scienceweb/articles');
+    console.log('success');
+
+  });
+});
+
 app.listen(Port, (req, res) => console.log('server started http://localhost:' + Port));

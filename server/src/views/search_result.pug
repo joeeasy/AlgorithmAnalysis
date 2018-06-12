@@ -168,11 +168,11 @@ block content
                         .row
                           .col-sm-12
                             p #{article.title}
-                          form(actions='/science/articles')
+                          form(action='/scienceweb/article/delete', method='POST')
+                            input(type="hidden", name='id', value=article._id)
                             .modal-footer
                               button.btn.btn-secondary(data-dismiss='modal', type='button')  Close
                               button.btn.btn-danger(type='submit') Confirm Delete
       else 
         h4.text-center(style="width: 100%") Your Search Couldn't Match Any Record
       .display-type
-    include layouts/scripts.pug
