@@ -7,7 +7,7 @@ block content
       p
         | Add Article To Science Web
     each article in articles
-      form#formValidate.margin-bottom(action='/scienceweb/article/edit', method='POST')
+      form#formValidate.margin-bottom(action='/scienceweb/article/update/', method='POST')
         .form-desc.margin__top--10
           | Please Take Sometime To Fill in the required fields
         .row
@@ -64,6 +64,7 @@ block content
                 label Submmit Paper(PDF, DOCX)
                   input.form-control(type='file', data-error='A document is expected', placeholder='Article thumbnail', accept=".pdf, .docx, .txt", required='required', name='paper')
                 .help-block.form-text.with-errors.form-control-feedback
+              input(type="hidden", name='id', value=article._id)
         .form-buttons-w.margin-bottom
           button.btn.btn-primary(type='submit')  Submit Article
         br

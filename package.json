@@ -7,7 +7,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec babel-node ./server/src/index.js",
+    "dev": "babel-node ./server/src/index.js",
     "clean": "rm -rf build && mkdir build && cd build && mkdir src && cd src",
     "build-babel": "babel -d ./build/src ./server/src -s",
     "build": "webpack && npm run clean && npm run build-babel ",
