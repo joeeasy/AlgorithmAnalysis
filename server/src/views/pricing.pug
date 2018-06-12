@@ -1,115 +1,66 @@
-doctype html
-html
-  include layouts/head.pug
-  body.menu-position-side.menu-side-left.full-screen
-    .all-wrapper.solid-bg-all
-      //
-        ------------------
-        START - Top Bar
-        ------------------
-      .top-bar.color-scheme-bright
-        .logo-w.menu-size
-          a.logo(href='index.html')
-            // <div cla/ss="logo-element"></div>
-            img(src='/sciencewebassets/assets/img/logo2.png', alt='')
-            .logo-label
-              | Science Web
-        //
-          ------------------
-          START - Top Menu Controls
-          ------------------
-        .top-menu-controls
-          //
-            ------------------
-            END - Messages Link in secondary top menu
-            ------------------
-          //
-            ------------------
-            START - Settings Link in secondary top menu
-            ------------------
-          //
-            ------------------
-            END - Settings Link in secondary top menu
-            ------------------
-          //
-            ------------------
-            START - User avatar and menu in secondary top menu
-            ------------------
-          //
-            ------------------
-            END - User avatar and menu in secondary top menu
-            ------------------
-        //
-          ------------------
-          END - Top Menu Controls
-          ------------------
-      //
-        ------------------
-        END - Top Bar
-        ------------------
-      .layout-w
-        
-        .container
-          .section-heading.centered
-            h1
-              | Pricing 
-            p
-              | Select A Plan To Gain Full Access To Science Web Databases.
-          .pricing-plans.row.no-gutters
-            .pricing-plan.col-sm-3.with-hover-effect
-              .plan-head
-                .plan-image
-                  img(alt='', src='/sciencewebassets/assets/img/plan1.png')
-                .plan-name
-                  | 1 Month
-              .plan-body
-                .plan-price-w
-                  .price-value
-                    | $1000
-                  .price-label
-                    | Monthly
-                .plan-btn-w
-                  a.btn.btn-primary.btn-rounded(href='/scienceweb/institution-signup/1000') Subscribe Now
-            .pricing-plan.col-sm-3.with-hover-effect
-              .plan-head
-                .plan-image
-                  img(alt='', src='/sciencewebassets/assets/img/plan2.png')
-                .plan-name
-                  | 3 Months
-              .plan-body
-                .plan-price-w
-                  .price-value
-                    | $3000
-                  .price-label
-                    | 3 Months Access
-                .plan-btn-w
-                  a.btn.btn-primary.btn-rounded(href='/scienceweb/institution-signup/3000') Subscribe Now
-            .pricing-plan.col-sm-3.with-hover-effect
-              .plan-head
-                .plan-image
-                  img(alt='', src='/sciencewebassets/assets/img/plan3.png')
-                .plan-name
-                  | 6 Months
-              .plan-body
-                .plan-price-w
-                  .price-value
-                    | $4500
-                  .price-label
-                    | 6 Months Access
-                .plan-btn-w
-                  a.btn.btn-primary.btn-rounded(href='/scienceweb/institution-signup/3000') Subscribe Now
-            .pricing-plan.col-sm-3.with-hover-effect
-              .plan-head
-                .plan-image
-                  img(alt='', src='/sciencewebassets/assets/img/plan4.png')
-                .plan-name
-                  | Custom Plan
-              .plan-body
-                .plan-price-w
-                  .price-value
-                    | Custom
-                  .price-label
-                    |Contact Us For Price
-                .plan-btn-w
-                  a.btn.btn-primary.btn-rounded(href='/contact') Subscribe Now
-        .display-type
+extends layout.pug
+block content
+  .container
+    .section-heading.centered
+      h1
+        | Pricing 
+      p
+        | Select A Plan To Gain Full Access To Science Web Databases.
+    .pricing-plans.row.no-gutters
+      .pricing-plan.col-sm-3.with-hover-effect
+        .plan-head
+          .plan-image
+            img(alt='', src='/sciencewebassets/assets/img/plan1.png')
+          .plan-name
+            | 1 Month
+        .plan-body
+          .plan-price-w
+            .price-value
+              | $1000
+            .price-label
+              | Monthly
+          .plan-btn-w
+            a.btn.btn-primary.btn-rounded(href='/scienceweb/institution-signup/1000') Subscribe Now
+      .pricing-plan.col-sm-3.with-hover-effect
+        .plan-head
+          .plan-image
+            img(alt='', src='/sciencewebassets/assets/img/plan2.png')
+          .plan-name
+            | 3 Months
+        .plan-body
+          .plan-price-w
+            .price-value
+              | $3000
+            .price-label
+              | 3 Months Access
+          .plan-btn-w
+            a.btn.btn-primary.btn-rounded(href='/scienceweb/institution-signup/3000') Subscribe Now
+      .pricing-plan.col-sm-3.with-hover-effect
+        .plan-head
+          .plan-image
+            img(alt='', src='/sciencewebassets/assets/img/plan3.png')
+          .plan-name
+            | 6 Months
+        .plan-body
+          .plan-price-w
+            .price-value
+              | $4500
+            .price-label
+              | 6 Months Access
+          .plan-btn-w
+            a.btn.btn-primary.btn-rounded(href='/scienceweb/institution-signup/3000') Subscribe Now
+      .pricing-plan.col-sm-3.with-hover-effect
+        .plan-head
+          .plan-image
+            img(alt='', src='/sciencewebassets/assets/img/plan4.png')
+          .plan-name
+            | Custom Plan
+        .plan-body
+          .plan-price-w
+            .price-value
+              | Custom
+            .price-label
+              |Contact Us For Price
+          .plan-btn-w
+            a.btn.btn-primary.btn-rounded(href='/contact') Subscribe Now
+  .display-type

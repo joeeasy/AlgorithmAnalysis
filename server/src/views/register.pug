@@ -1,179 +1,130 @@
-doctype html
-html
-  include layouts/head.pug
-  body.menu-position-side.menu-side-left.full-screen
-    .all-wrapper.solid-bg-all
+extends layout.pug
+block content
+  //
+    ------------------
+    START - Mobile Menu
+    ------------------
+  .menu-mobile.menu-activated-on-click.color-scheme-dark
+    .mm-logo-buttons-w
+      a.mm-logo(href='index.html')
+        img(src='/sciencewebassets/assets/img/logo2.png')
+        span Science Web
+      .mm-buttons
+        .content-panel-open
+          .os-icon.os-icon-grid-circles
+        .mobile-menu-trigger
+          .os-icon.os-icon-hamburger-menu-1
+    .menu-and-user
+      .logged-user-w
+        .avatar-w
+          img(alt='', src='/sciencewebassets/assets/img/avatar1.jpg')
+        .logged-user-info-w
+          .logged-user-name
+            | Univelcity
+          .logged-user-role
+            | Administrator
       //
         ------------------
-        START - Top Bar
+        START - Mobile Menu List
         ------------------
-      .top-bar.color-scheme-bright
-        .logo-w.menu-size
-          a.logo(href='index.html')
-            // <div cla/ss="logo-element"></div>
-            img(src='/sciencewebassets/assets/img/logo2.png', alt='')
-            .logo-label
-              | Science Web
-        //
-          ------------------
-          START - Top Menu Controls
-          ------------------
-        .top-menu-controls
-          //
-            ------------------
-            END - Messages Link in secondary top menu
-            ------------------
-          //
-            ------------------
-            START - Settings Link in secondary top menu
-            ------------------
-          //
-            ------------------
-            END - Settings Link in secondary top menu
-            ------------------
-          //
-            ------------------
-            START - User avatar and menu in secondary top menu
-            ------------------
-          //
-            ------------------
-            END - User avatar and menu in secondary top menu
-            ------------------
-        //
-          ------------------
-          END - Top Menu Controls
-          ------------------
       //
         ------------------
-        END - Top Bar
+        END - Mobile Menu List
         ------------------
-      .layout-w
-        //
-          ------------------
-          START - Mobile Menu
-          ------------------
-        .menu-mobile.menu-activated-on-click.color-scheme-dark
-          .mm-logo-buttons-w
-            a.mm-logo(href='index.html')
-              img(src='/sciencewebassets/assets/img/logo2.png')
-              span Science Web
-            .mm-buttons
-              .content-panel-open
-                .os-icon.os-icon-grid-circles
-              .mobile-menu-trigger
-                .os-icon.os-icon-hamburger-menu-1
-          .menu-and-user
-            .logged-user-w
-              .avatar-w
-                img(alt='', src='/sciencewebassets/assets/img/avatar1.jpg')
-              .logged-user-info-w
-                .logged-user-name
-                  | Univelcity
-                .logged-user-role
-                  | Administrator
-            //
-              ------------------
-              START - Mobile Menu List
-              ------------------
-            //
-              ------------------
-              END - Mobile Menu List
-              ------------------
-        //
-          ------------------
-          END - Mobile Menu
-          ------------------
-        //
-          ------------------
-          START - Main Menu
-          ------------------
-        .container
-          .section-heading.centered
-            h1
-              | Payment Information
-            p
-              | Complete your subscription by entering your billing information b elow.
-          .element-box
-            form(action="/scienceweb/payment_summary")
-              .steps-w
-                .step-triggers
-                  a.step-trigger.active(href='#stepContent1') User Information
-                  a.step-trigger(href='#stepContent2') Account setup
-                  a.step-trigger(href='#stepContent3') Billing information
-                .step-contents
-                  #stepContent1.step-content.active
-                    .row
-                      .col-sm-6
-                        .form-group
-                          label(for='')  First Name
-                          input.form-control(name='fname', placeholder='First Name', type='text')
-                      .col-sm-6
-                        .form-group
-                          label(for='') Last Name
-                          input.form-control(name='lname', placeholder='Last Name', type='text')
-                    .row
-                      .col-sm-6
-                        .form-group
-                          label(for='')  Institustion Name
-                          input.form-control(name='iname', placeholder='Name of your institustion', type='text')
-                      .col-sm-6
-                        .form-group
-                          label(for='') phone e.g +1
-                          input.form-control(name='phone', placeholder='phone', type='text')
-                    .form-buttons-w.text-right
-                      a.btn.btn-primary.step-trigger-btn(href='#stepContent2')  Continue
-                  #stepContent2.step-content
-                    .form-group
-                      label(for='')  Email address
-                      input.form-control(placeholder='Enter email', type='email')
-                    .row
-                      .col-sm-6
-                        .form-group
-                          label(for='')  Password
-                          input.form-control(placeholder='Password', type='password')
-                      .col-sm-6
-                        .form-group
-                          label(for='') Confirm Password
-                          input.form-control(placeholder='Password', type='password')
-                    .form-group
-                      label(for='')  User Type
-                      select.form-control
-                        option
-                          | Author
-                        option
-                          | Publisher
-                        option
-                          | Editor
-                        option
-                          | Scholar
-                    .form-buttons-w.text-right
-                      a.btn.btn-primary.step-trigger-btn(href='#stepContent3')  Continue
-                  #stepContent3.step-content
-                    .form-group
-                      label(for='')  Card Holder Name
-                      input.form-control(type='text', placeholder='Name on card')
-                    .row
-                      .col-sm-6
-                        .form-group
-                          label(for='')  Expiring date
-                          input.form-control(placeholder='date', type='text')
-                      .col-sm-6
-                        .form-group
-                          label(for='') CCV
-                          input.form-control(placeholder='Last 3 digits at the back of your card', type='text')
-                      .col-sm-6
-                        .form-group
-                          label(for='') Billing Address 
-                          input.form-control(placeholder='Billing address', type='text')
-                      .col-sm-3
-                        .form-group
-                          label(for='') Postal Code
-                          input.form-control(placeholder='Postal code', type='text')
-                      .col-sm-3
-                        .form-group
-                          label(for='') Country
-                          input.form-control(placeholder='Country', type='text')
-                    .form-buttons-w.text-right
-                      button.btn.btn-primary Proceed
-        .display-type
-  include layouts/scripts.pug
+  //
+    ------------------
+    END - Mobile Menu
+    ------------------
+  //
+    ------------------
+    START - Main Menu
+    ------------------
+  .container
+    .section-heading.centered
+      h1
+        | Payment Information
+      p
+        | Complete your subscription by entering your billing information b elow.
+    .element-box
+      form(action="/scienceweb/payment_summary")
+        .steps-w
+          .step-triggers
+            a.step-trigger.active(href='#stepContent1') User Information
+            a.step-trigger(href='#stepContent2') Account setup
+            a.step-trigger(href='#stepContent3') Billing information
+          .step-contents
+            #stepContent1.step-content.active
+              .row
+                .col-sm-6
+                  .form-group
+                    label(for='')  First Name
+                    input.form-control(name='fname', placeholder='First Name', type='text')
+                .col-sm-6
+                  .form-group
+                    label(for='') Last Name
+                    input.form-control(name='lname', placeholder='Last Name', type='text')
+              .row
+                .col-sm-6
+                  .form-group
+                    label(for='')  Institustion Name
+                    input.form-control(name='iname', placeholder='Name of your institustion', type='text')
+                .col-sm-6
+                  .form-group
+                    label(for='') phone e.g +1
+                    input.form-control(name='phone', placeholder='phone', type='text')
+              .form-buttons-w.text-right
+                a.btn.btn-primary.step-trigger-btn(href='#stepContent2')  Continue
+            #stepContent2.step-content
+              .form-group
+                label(for='')  Email address
+                input.form-control(placeholder='Enter email', type='email')
+              .row
+                .col-sm-6
+                  .form-group
+                    label(for='')  Password
+                    input.form-control(placeholder='Password', type='password')
+                .col-sm-6
+                  .form-group
+                    label(for='') Confirm Password
+                    input.form-control(placeholder='Password', type='password')
+              .form-group
+                label(for='')  User Type
+                select.form-control
+                  option
+                    | Author
+                  option
+                    | Publisher
+                  option
+                    | Editor
+                  option
+                    | Scholar
+              .form-buttons-w.text-right
+                a.btn.btn-primary.step-trigger-btn(href='#stepContent3')  Continue
+            #stepContent3.step-content
+              .form-group
+                label(for='')  Card Holder Name
+                input.form-control(type='text', placeholder='Name on card')
+              .row
+                .col-sm-6
+                  .form-group
+                    label(for='')  Expiring date
+                    input.form-control(placeholder='date', type='text')
+                .col-sm-6
+                  .form-group
+                    label(for='') CCV
+                    input.form-control(placeholder='Last 3 digits at the back of your card', type='text')
+                .col-sm-6
+                  .form-group
+                    label(for='') Billing Address 
+                    input.form-control(placeholder='Billing address', type='text')
+                .col-sm-3
+                  .form-group
+                    label(for='') Postal Code
+                    input.form-control(placeholder='Postal code', type='text')
+                .col-sm-3
+                  .form-group
+                    label(for='') Country
+                    input.form-control(placeholder='Country', type='text')
+              .form-buttons-w.text-right
+                button.btn.btn-primary Proceed
+  .display-type

@@ -40,12 +40,26 @@ var _pug = require('pug');
 
 var _pug2 = _interopRequireDefault(_pug);
 
+var _mongoose = require('mongoose');
+
+var _mongoose2 = _interopRequireDefault(_mongoose);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import { scrapeRoute } from './route/index';
+var mongoDB = 'mongodb://root:Acc355c0d3@ds261929.mlab.com:61929/algorithmanalysis';
+// database connection
+var connection = _mongoose2.default.connect(mongoDB);
+
+var db = _mongoose2.default.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+  // we're connected!
+  console.log('connected');
+});
 
 // starting app
 var app = (0, _express2.default)();
-// import { scrapeRoute } from './route/index';
-
 
 var Port = process.env.PORT || 5000;
 // console.log(process.env)
@@ -147,6 +161,18 @@ app.get('/scienceweb/institution-signup/:price', function (req, res) {
 });
 app.get('/scienceweb/payment_summary', function (req, res) {
   return res.render('payment_summary');
+});
+app.get('/scienceweb/searchResult', function (req, res) {
+  return res.render('search_result');
+});
+app.get('/scienceweb/search/:articleTitle', function (req, res) {
+  return res.render('search_details');
+});
+app.get('/scienceweb/addArticle', function (req, res) {
+  return res.render('addarticle');
+});
+app.get('/scienceweb/articles', function (req, res) {
+  return res.render('articles');
 });
 
 app.listen(Port, function (req, res) {
