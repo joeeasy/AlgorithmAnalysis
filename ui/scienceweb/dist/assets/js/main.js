@@ -840,4 +840,5 @@ $(function () {
     $('.search-with-suggestions-w').fadeOut();
     return false;
   });
+  
 });
