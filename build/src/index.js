@@ -36,6 +36,18 @@ var _webpack3 = require('../../webpack.config');
 
 var _webpack4 = _interopRequireDefault(_webpack3);
 
+var _expressSession = require('express-session');
+
+var _expressSession2 = _interopRequireDefault(_expressSession);
+
+var _expressValidator = require('express-validator');
+
+var _expressValidator2 = _interopRequireDefault(_expressValidator);
+
+var _connectFlash = require('connect-flash');
+
+var _connectFlash2 = _interopRequireDefault(_connectFlash);
+
 var _pug = require('pug');
 
 var _pug2 = _interopRequireDefault(_pug);
@@ -44,10 +56,30 @@ var _mongoose = require('mongoose');
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
+var _articles = require('./models/articles');
+
+var _articles2 = _interopRequireDefault(_articles);
+
+var _cloudinary = require('cloudinary');
+
+var _cloudinary2 = _interopRequireDefault(_cloudinary);
+
+var _expressFileupload = require('express-fileupload');
+
+var _expressFileupload2 = _interopRequireDefault(_expressFileupload);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// cloudinary configuration
+
 // import { scrapeRoute } from './route/index';
-var mongoDB = 'mongodb://root:Acc355c0d3@ds261929.mlab.com:61929/algorithmanalysis';
+_cloudinary2.default.config({
+  cloud_name: 'dsxfchez8',
+  api_key: '557836499496183',
+  api_secret: 'PKUHg16h73APhZPubaRw25mfbdE'
+});
+
+var mongoDB = 'mongodb://root:test123@ds255260.mlab.com:55260/algorithmanalysis';
 // database connection
 var connection = _mongoose2.default.connect(mongoDB);
 
@@ -60,14 +92,40 @@ db.once('open', function () {
 
 // starting app
 var app = (0, _express2.default)();
+app.use(function (req, res, next) {
+  if (req.headers['x-forwarded-proto'] === 'https') {
+    res.redirect('http://' + req.hostname + req.url);
+  } else {
+    next();
+  }
+});
 
 var Port = process.env.PORT || 5000;
 // console.log(process.env)
+
+// Express session
+// app.set('trust proxy', 1) // trust first proxy
+app.use((0, _expressSession2.default)({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}));
+
+// Express message
+app.use((0, _connectFlash2.default)());
+app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
 
 // parse application/x-www-form-urlencoded
 app.use(_bodyParser2.default.urlencoded({
   extended: false
 }));
+
+// file upload
+app.use((0, _expressFileupload2.default)());
 
 // // parse application/json
 app.use(_bodyParser2.default.json());
@@ -146,6 +204,7 @@ app.post('/search', function (req, res) {
   });
 });
 
+// GET ROUTES
 app.get('/scienceweb', function (req, res) {
   return res.render('index');
 });
@@ -165,14 +224,120 @@ app.get('/scienceweb/payment_summary', function (req, res) {
 app.get('/scienceweb/searchResult', function (req, res) {
   return res.render('search_result');
 });
-app.get('/scienceweb/search/:articleTitle', function (req, res) {
-  return res.render('search_details');
+app.get('/scienceweb/search/:articleID', function (req, res) {
+  _articles2.default.find({ _id: req.params.articleID }, function (err, articles) {
+    res.render('search_details', { articles: articles });
+  });
 });
 app.get('/scienceweb/addArticle', function (req, res) {
   return res.render('addarticle');
 });
 app.get('/scienceweb/articles', function (req, res) {
-  return res.render('articles');
+  _articles2.default.find(function (err, articles) {
+    // console.log(articles);
+    res.render('articles', { articles: articles });
+  });
+});
+
+// POST ROUTES creating articles
+app.post('/scienceweb/addArticle', function (req, res) {
+  if (!req.files) return res.status(400).send('No files were uploaded.');
+
+  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+  var image = req.files.thumbnail;
+  console.log(image);
+  // let file = req.files.filename,
+  //     filename = filename;
+  //     file.mv('../upload/'+filename);
+  // console.log(__dirname, req.body.thumbnail);
+  _cloudinary2.default.uploader.upload(__dirname + '/' + req.body.thumbnail, function (result) {
+    console.log(result);
+  });
+
+  var article = new _articles2.default({
+    title: req.body.articleTitle,
+    author: req.body.authorname,
+    branch: req.body.branch,
+    volume: req.body.volume,
+    issues: req.body.issues,
+    pages: req.body.pages,
+    publishedDate: req.body.publishedDate,
+    articleContent: req.body.tcontent,
+    abstract: req.body.abstract,
+    thumbnail: req.body.thumbnail,
+    paper: req.body.paper,
+    roi: req.body.roi
+  });
+
+  // save the newly created article
+  article.save(function (err) {
+    if (err) return handleError(err);
+    // saved!
+    console.log('article was created');
+  });
+  res.redirect('/scienceweb/articles');
+});
+
+// post search result 
+app.post('/scienceweb/searchResult', function (req, res) {
+  // console.log(req.body.search)
+  var keyword = req.body.search;
+  var articles = [];
+  _articles2.default.find(function (err, arts) {
+    arts.filter(function (art) {
+      // console.log(art.title)
+      if (art.title.includes(keyword)) {
+        articles.push(art);
+      }
+    });
+    // console.log(articles);
+    res.render('search_result', { articles: articles, keyword: keyword });
+  });
+});
+
+// EDIT ARTICLE
+app.get('/scienceweb/article/edit', function (req, res) {
+  var id = req.query.articleId;
+  _articles2.default.find({ _id: id }, function (err, articles) {
+    res.render('editArticle', { articles: articles });
+  });
+});
+
+// UPDATE EDITTED ARTICLES
+app.post('/scienceweb/article/update', function (req, res) {
+  // console.log(req.params.id);
+
+  var id = req.body.id;
+  var articleModified = {
+    title: req.body.articleTitle,
+    author: req.body.authorname,
+    branch: req.body.branch,
+    volume: req.body.volume,
+    issues: req.body.issues,
+    pages: req.body.pages,
+    publishedDate: req.body.publishedDate,
+    articleContent: req.body.tcontent,
+    abstract: req.body.abstract,
+    thumbnail: req.body.thumbnail,
+    paper: req.body.paper,
+    roi: req.body.roi
+  };
+  _articles2.default.updateOne({ _id: id }, articleModified, function (err, res) {
+    console.log(res);
+  });
+  res.redirect('/scienceweb/articles');
+});
+
+//DELETE ARTICLE
+app.post('/scienceweb/article/delete', function (req, res) {
+  var id = req.body.id;
+  _articles2.default.deleteOne({ _id: id }, function (err) {
+    if (err) return handleError(err);
+
+    // deleted at most one tank document
+    res.redirect('/scienceweb/articles');
+    console.log('success');
+  });
 });
 
 app.listen(Port, function (req, res) {
