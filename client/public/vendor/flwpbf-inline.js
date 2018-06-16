@@ -237,7 +237,7 @@ w
 
         _data.init_url = encodeURIComponent(window.location.href);
 
-    	getpaidiframe.src = 'http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/pbfui?' + generateQueryString(_data);
+    	getpaidiframe.src = 'flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/pbfui?' + generateQueryString(_data);
     	 
         document.body.appendChild(getpaidiframe);
        
