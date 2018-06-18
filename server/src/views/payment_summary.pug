@@ -40,7 +40,16 @@ block content
     START - Main Menu
     ------------------
   .container
+
+    form#form
+    if user
     .invoice-w(style='margin: 0 auto')
+      input#fname(type="hidden", value=user.fname)
+      input#lname(type="hidden", value=user.lfname)
+      input#city(type="hidden", value=user.city)
+      input#phone(type="hidden", value=user.phone)
+      input#country(type="hidden", value=user.country)
+      input#email(type="hidden", value=user.email)
       .infos
         .info-1
           .invoice-logo-w
@@ -56,19 +65,18 @@ block content
           .company-extra
             | tel. 858.745.5577
         .info-2
-          .company-name
-            | Client Inc
+          .company-name#name #{user.fname + ' ' + user.lname}
           .company-address
-            | 210 Benson Lane, Suite 430
+            | #{user.baddress}
             br
-            | Queens, NY 11243
+            | #{user.city}, #{user.postalCode}
             br
-            | United States
+            | #{user.country}
       .invoice-heading
         h3
           | Payment summary
         .invoice-date
-          | 22 December 2017
+          | #{date}
       .invoice-body
         .invoice-desc
           .desc-label
@@ -90,20 +98,26 @@ block content
                 td
                   | Science Web Subscription
                 td
-                  | 2
+                  .form-group
+                    select#monthPicker.form-control(name='months')
+                      option(selected value='1') 1 Month
+                      option(select value='3') 3 Months
+                      option(value="6") 6 Months
                 td.text-right
-                  | $4,500
+                  span $
+                  span#amount 1000
             tfoot
               tr
                 td
                   | Total
                 td.text-right(colspan='2')
-                  | $4,500
+                  span $
+                  span#total 1000
           .terms
             .terms-header
               | Terms and Conditions
             .terms-content
-              | Should be paid as soon as received, otherwise a 5% penalty fee is applied
+              //- | Should be paid as soon as received, otherwise a 5% penalty fee is applied
       .invoice-footer
         .invoice-logo
           img(alt='', src='/sciencewebassets/assets/img/logo.png')
@@ -111,6 +125,5 @@ block content
         .invoice-info
           span hello@paper.inc
           span 858.757.4455
-      form#form
-        button#submit.btn.btn-primary.btn-rounded.btn-block(type="submit") Pay and Continue.
+      button#submit.btn.btn-primary.btn-rounded.btn-block(type="submit") Pay and Continue.
   .display-type

@@ -46,50 +46,63 @@ block content
       p
         | Complete your subscription by entering your billing information b elow.
     .element-box
-      form(action="/scienceweb/payment_summary")
+      form#formValidate(method='POST', action="/institution-signup/"+price)
         .steps-w
           .step-triggers
             a.step-trigger.active(href='#stepContent1') User Information
             a.step-trigger(href='#stepContent2') Account setup
             a.step-trigger(href='#stepContent3') Billing information
+            
           .step-contents
             #stepContent1.step-content.active
+              if errors
+                each error in errors
+                  div(class='alert alert-danger', role='alert') #{error.msg}
+              if email
+                  div(class='alert alert-danger', role='alert') Email address already exist
               .row
                 .col-sm-6
                   .form-group
                     label(for='')  First Name
-                    input.form-control(name='fname', placeholder='First Name', type='text')
+                    input.form-control(data-error='First Name Is Required', required='required', name='fname', placeholder='First Name', type='text')
+                    .help-block.form-text.with-errors.form-control-feedback
                 .col-sm-6
                   .form-group
                     label(for='') Last Name
-                    input.form-control(name='lname', placeholder='Last Name', type='text')
+                    input.form-control(data-error='Please enter your Last Name', required='required', name='lname', placeholder='Last Name', type='text')
+                    .help-block.form-text.with-errors.form-control-feedback
               .row
                 .col-sm-6
                   .form-group
                     label(for='')  Institustion Name
-                    input.form-control(name='iname', placeholder='Name of your institustion', type='text')
+                    input.form-control(data-error='Please enter the name of your institution', required='required', name='iname', placeholder='Name of your institustion', type='text')
+                    .help-block.form-text.with-errors.form-control-feedback
                 .col-sm-6
                   .form-group
                     label(for='') phone e.g +1
-                    input.form-control(name='phone', placeholder='phone', type='text')
+                    input.form-control(data-error='Phone number is required', required='required', name='phone', placeholder='phone', type='text')
+                    .help-block.form-text.with-errors.form-control-feedback
               .form-buttons-w.text-right
                 a.btn.btn-primary.step-trigger-btn(href='#stepContent2')  Continue
             #stepContent2.step-content
               .form-group
                 label(for='')  Email address
-                input.form-control(placeholder='Enter email', type='email')
+                input.form-control(name='email', placeholder='Enter email', type='email', data-error='Please enter a valid email address', required='required')
+                .help-block.form-text.with-errors.form-control-feedback
               .row
                 .col-sm-6
                   .form-group
                     label(for='')  Password
-                    input.form-control(placeholder='Password', type='password')
+                    input.form-control(name='password', placeholder='Password', type='password', data-error='password is required', required='required')
+                    .help-block.form-text.with-errors.form-control-feedback
                 .col-sm-6
                   .form-group
                     label(for='') Confirm Password
-                    input.form-control(placeholder='Password', type='password')
+                    input.form-control(name='cpassword', placeholder='Confirm Password', type='password', required='required', data-error='Please confirm your password')
+                    .help-block.form-text.with-errors.form-control-feedback
               .form-group
                 label(for='')  User Type
-                select.form-control
+                select.form-control(name='userType', data-error='Please select a user type', required='required')
                   option
                     | Author
                   option
@@ -98,33 +111,47 @@ block content
                     | Editor
                   option
                     | Scholar
+                .help-block.form-text.with-errors.form-control-feedback
               .form-buttons-w.text-right
                 a.btn.btn-primary.step-trigger-btn(href='#stepContent3')  Continue
             #stepContent3.step-content
               .form-group
                 label(for='')  Card Holder Name
-                input.form-control(type='text', placeholder='Name on card')
+                input.form-control(type='text', placeholder='Name on card', data-error="Cardholder's name is required", required='required', name='cardHolderName')
+                .help-block.form-text.with-errors.form-control-feedback
               .row
                 .col-sm-6
                   .form-group
                     label(for='')  Expiring date
-                    input.form-control(placeholder='date', type='text')
+                    input.form-control(placeholder='date', type='text', data-error='Expiring date invalid', name='expiringDate')
+                    .help-block.form-text.with-errors.form-control-feedback
                 .col-sm-6
                   .form-group
                     label(for='') CCV
-                    input.form-control(placeholder='Last 3 digits at the back of your card', type='text')
+                    input.form-control(name='ccv', placeholder='Last 3 digits at the back of your card', type='text', data-error='This field is required', required='required')
+                    .help-block.form-text.with-errors.form-control-feedback
                 .col-sm-6
-                  .form-group
-                    label(for='') Billing Address 
-                    input.form-control(placeholder='Billing address', type='text')
+                  .row
+                    .col-sm-6
+                      .form-group
+                        label(for='') Billing Address 
+                        input.form-control(name='baddress', placeholder='Billing address', type='text', data-error='Please enter your billing adddress', required='required')
+                        .help-block.form-text.with-errors.form-control-feedback
+                    .col-sm-6
+                      .form-group
+                          label(for='') City 
+                          input.form-control(name='city', placeholder='City', type='text', data-error='City is required', required='required')
+                          .help-block.form-text.with-errors.form-control-feedback
                 .col-sm-3
                   .form-group
                     label(for='') Postal Code
-                    input.form-control(placeholder='Postal code', type='text')
+                    input.form-control(name='postalCode', placeholder='Postal code', type='number', data-error='Please enter a valid Postal Code', required='required')
+                    .help-block.form-text.with-errors.form-control-feedback
                 .col-sm-3
                   .form-group
                     label(for='') Country
-                    input.form-control(placeholder='Country', type='text')
+                    input.form-control(name='country',placeholder='Country', type='text', data-error='Please enter your country', required='required')
+                    .help-block.form-text.with-errors.form-control-feedback
               .form-buttons-w.text-right
                 button.btn.btn-primary Proceed
   .display-type

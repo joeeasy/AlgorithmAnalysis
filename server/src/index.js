@@ -12,11 +12,14 @@ import session  from 'express-session';
 import expressValidator from 'express-validator';
 import flash from 'connect-flash';
 import pug from 'pug';
+import expressMessage from 'express-messages';
 import mongoose from 'mongoose';
 import Article from './models/articles';
+import User from './models/users';
 import cloudinary from 'cloudinary';
 import upload from 'express-fileupload';
-
+import passport from 'passport';
+import moment from 'moment';
 // cloudinary configuration
 cloudinary.config({ 
   cloud_name: 'dsxfchez8', 
@@ -43,21 +46,7 @@ const app = express();
 const Port = process.env.PORT || 5000;
 // console.log(process.env)
 
-// Express session
-// app.set('trust proxy', 1) // trust first proxy
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
-}));
 
-// Express message
-app.use(flash());
-app.use((req, res, next) => {
-  res.locals.messages = require('express-messages')(req, res);
-  next();
-});
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
@@ -80,7 +69,49 @@ app.use(webpackMiddleware(webpack(webpackConfig)));
 app.set('view engine', 'pug');
 app.set("views", path.join(__dirname, "views"));
 
+/// Express Session
+app.use(session({
+  secret: 'secret',
+  saveUninitialized: true,
+  resave: true
+}));
 
+// Passport init
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Express Validator
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+      var namespace = param.split('.')
+      , root    = namespace.shift()
+      , formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
+
+// Express message
+app.use(flash());
+
+// Global Vars
+app.use(function (req, res, next) {
+  res.locals.messages= expressMessage(req, res);
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
+  next();
+});
+
+// 
 app.get('/', (req, res) => {
   res.sendfile(path.resolve(__dirname, '../../client/public/index.html'));
 });
@@ -151,12 +182,25 @@ app.get('/scienceweb', (req, res) => res.render('index'));
 
 app.get('/login', (req, res) => res.render('login') );
 app.get('/scienceweb/pricing', (req, res) => res.render('pricing'));
-app.get('/scienceweb/institution-signup/:price', (req, res) => res.render('register'));
-app.get('/scienceweb/payment_summary', (req, res) => res.render('payment_summary'));
+app.get('/scienceweb/institution-signup', (req, res) => {
+  res.render('register');
+});
+
+app.get('/scienceweb/payment_summary/:id', (req, res) => {
+  let id = req.params.id;
+  let date = moment().format("MMMM Do YYYY");
+
+  User.findOne({_id: id},(err, user) => {
+    console.log(user)
+    res.render('payment_summary', {user, date });
+  });
+});
+
 app.get('/scienceweb/searchResult', (req, res) => res.render('search_result'));
+
 app.get('/scienceweb/search/:articleID', (req, res) => {
   Article.find({_id: req.params.articleID},(err, articles) => {
-    res.render('search_details', {articles})
+    res.render('search_details', {articles});
   })
 });
 app.get('/scienceweb/addArticle', (req, res) => res.render('addarticle'));
@@ -272,6 +316,62 @@ app.post('/scienceweb/article/delete', (req, res) => {
     console.log('success');
 
   });
+});
+
+// SIGN UP POST
+app.post('/institution-signup/:price', (req, res) => {
+  let price = req.params.price;
+  let email = req.body.email;
+  let userId = '';
+
+  // Validation
+  req.checkBody('fname', 'First name is required').notEmpty();
+  req.checkBody('lname', 'Last name is required').notEmpty();
+  req.checkBody('iname', 'Institution name is required').notEmpty();
+  req.checkBody('phone', 'Phone number is required').notEmpty();
+  req.checkBody('email', 'Email is not valid').isEmail();
+  req.checkBody('password', 'Password is required').notEmpty();
+  req.checkBody('cpassword', 'Passwords do not match').equals(req.body.password);
+  req.checkBody('userType', 'Usertype is required').notEmpty();
+  req.checkBody('cardHolderName', 'Please provide name on card').notEmpty();
+  req.checkBody('expiringDate', 'Please provide expiring date on card').notEmpty();
+  req.checkBody('ccv', 'Please provide ccv on card').notEmpty();
+  req.checkBody('baddress', 'Please provide billing address').notEmpty();
+  req.checkBody('postalCode', 'Please provide postal code').notEmpty();
+  req.checkBody('country', 'Please enter a country').notEmpty();
+
+  let errors =  req.validationErrors();
+
+  if(errors) {
+    console.log(errors)
+    res.render('register', {errors, price});
+  }
+  else {
+    //checking for email and username are already taken
+
+      User.findOne({ email: { 
+        "$regex": "^" + email + "\\b", "$options": "i"
+    }}, function (err, email) {
+        if (email) {
+          res.render('register', {
+            email, price
+          });
+        }
+        else {
+          
+          let user = new User(req.body);
+          // save the newly created user
+          userId = user._id;
+          user.save((err) => {
+            if (err) return handleError(err);
+            // saved!
+            console.log('New  user added');
+            
+          });
+          res.redirect('/scienceweb/payment_summary/'+userId);
+        }
+      });
+  }
 });
 
 app.listen(Port, (req, res) => console.log('server started http://localhost:' + Port));
