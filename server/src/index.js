@@ -319,7 +319,7 @@ app.post('/scienceweb/article/delete', (req, res) => {
 });
 
 // SIGN UP POST
-app.post('/institution-signup/:price', (req, res) => {
+app.post('/institution-signup/', (req, res) => {
   let price = req.params.price;
   let email = req.body.email;
   let userId = '';
