@@ -92,13 +92,6 @@ db.once('open', function () {
 
 // starting app
 var app = (0, _express2.default)();
-app.use(function (req, res, next) {
-  if (req.headers['x-forwarded-proto'] === 'https') {
-    res.redirect('http://' + req.hostname + req.url);
-  } else {
-    next();
-  }
-});
 
 var Port = process.env.PORT || 5000;
 // console.log(process.env)

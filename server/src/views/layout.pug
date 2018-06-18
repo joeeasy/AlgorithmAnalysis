@@ -100,6 +100,22 @@ html
     script(src='/sciencewebassets/assets/js/demo_customizer.js?version=4.3.0')
     script(type='text/javascript', src='/vendor/flwpbf-inline.js')
     script.
+      var amount = document.getElementById('amount');
+      var total = document.getElementById('total');
+      var monthPicker = document.getElementById('monthPicker');
+      var city = document.getElementById('city');
+      var fname = document.getElementById('fname');
+      var lname = document.getElementById('lname');
+      var address = document.getElementById('address');
+      var country = document.getElementById('country');
+      var phone = document.getElementById('phone');
+      var email = document.getElementById('email');
+
+      //- add select eventlistener to month picker
+      monthPicker.addEventListener('click', function(e){
+        amount.textContent = parseInt(e.target.value) * 1000;
+        total.textContent = amount.textContent;
+      })
       var form = document.getElementById('form');
       form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -114,12 +130,12 @@ html
           // getpaidSetup is Rave's inline script function. it holds the payment data to pass to Rave.
           getpaidSetup({
             PBFPubKey: PBFKey,
-            customer_email: 'joeokpus@gmail.com',
-            customer_firstname: "Temi",
-            customer_lastname: "Adelewa",
-            amount: 200,
-            customer_phone: "234099940409",
-            country: "NG",
+            customer_email: email.value,
+            customer_firstname: fname.value,
+            customer_lastname: lname.value,
+            amount: parseInt(amount.textContent),
+            customer_phone: phone.value,
+            country: country.value,
             currency: "USD",
             txref: txRef, // Pass your UNIQUE TRANSACTION REFERENCE HERE.
             //integrity_hash: hashedValue, // pass the sha256 hashed value here.
@@ -129,8 +145,10 @@ html
             console.log("This is the response returned after a charge", response);
             if(response.tx.chargeResponse =='00' || response.tx.chargeResponse == '0') {
               // redirect to a success page
+              window.location = '/scienceweb/';
             } else {
               // redirect to a failure page.
+              window.location = '/scienceweb/institution-signup';
             }
             }
           });
