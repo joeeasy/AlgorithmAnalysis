@@ -20,6 +20,10 @@ import cloudinary from 'cloudinary';
 import upload from 'express-fileupload';
 import passport from 'passport';
 import moment from 'moment';
+import { Strategy }  from 'passport-local';
+
+
+const LocalStrategy = Strategy;
 // cloudinary configuration
 cloudinary.config({ 
   cloud_name: 'dsxfchez8', 
@@ -373,5 +377,21 @@ app.post('/institution-signup/', (req, res) => {
       });
   }
 });
+
+// LOGIN
+passport.use(new LocalStrategy(
+  function(email, password, done) {
+    User.findOne({ email: email }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username or password.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password or username.' });
+      }
+      return done(null, user);
+    });
+  }
+));
 
 app.listen(Port, (req, res) => console.log('server started http://localhost:' + Port));
