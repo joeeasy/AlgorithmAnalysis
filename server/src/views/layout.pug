@@ -38,14 +38,11 @@ html
           START - Top Menu Controls
           ------------------
         .top-menu-controls
-          //
-            ------------------
-            END - Messages Link in secondary top menu
-            ------------------
-          //
+          //-  
             ------------------
             START - Settings Link in secondary top menu
             ------------------
+          .top-icon.top-settings.os-dropdown-trigger
           //
             ------------------
             END - Settings Link in secondary top menu
@@ -54,18 +51,33 @@ html
             ------------------
             START - User avatar and menu in secondary top menu
             ------------------
+          .logged-user-w
+            .logged-user-i
+              .avatar-w
+                img(alt='', src='/sciencewebassets/assets/img/avatar1.jpg')
+              .logged-user-menu.color-style-bright
+                .logged-user-avatar-info
+                  .avatar-w
+                    img(alt='', src='/sciencewebassets/assets/img/avatar1.jpg')
+                  .logged-user-info-w
+                    .logged-user-name #{user.fname}
+                    .logged-user-role #{user.userType}
+                .bg-icon
+                  i.os-icon.os-icon-wallet-loaded
+                ul
+                  li
+                    a(href='/scienceweb/profile')
+                      i.os-icon.os-icon-user-male-circle2
+                      span Profile Details
+                  li
+                    a(href='/logout')
+                      i.os-icon.os-icon-signs-11
+                      span Logout
           //
             ------------------
             END - User avatar and menu in secondary top menu
             ------------------
-        //
-          ------------------
-          END - Top Menu Controls
-          ------------------
-      //
-        ------------------
-        END - Top Bar
-        ------------------
+
       .layout-w
         != messages('message', locals)
         block content

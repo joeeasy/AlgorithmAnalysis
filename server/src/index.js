@@ -111,9 +111,11 @@ app.use(function (req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
-  res.locals.user = req.user || null;
+  // res.locals.user = req.user || null;
   next();
 });
+
+
 
 // 
 app.get('/', (req, res) => {
@@ -393,7 +395,9 @@ passport.use(new LocalStrategy(
         console.log('invalid password')
         return done(null, false, { message: 'Incorrect password or username.' });
       }
-      console.log(user)
+      console.log(user);
+      app.locals.user = user;
+      console.log(app.locals.user = user)
       console.log('login sucessful')
       return done(null, user);
     });
@@ -415,5 +419,10 @@ app.post('/login',
                                    failureRedirect: '/login',
                                    failureFlash: true })
 );
+
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/login');
+});
 
 app.listen(Port, (req, res) => console.log('server started http://localhost:' + Port));

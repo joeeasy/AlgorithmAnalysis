@@ -46,48 +46,26 @@ block content
         .avatar-w
           img(alt='', src='/sciencewebassets/assets/img/avatar1.jpg')
         .logged-user-info-w
-          .logged-user-name
-            | Univelcity
-          .logged-user-role
-            | Administrator
+          .logged-user-name #{user.fname}
+          .logged-user-role #{user.userType}
         .logged-user-toggler-arrow
           .os-icon.os-icon-chevron-down
     h1.menu-page-header
       | Page Header
     ul.main-menu
-      li.sub-header
-        span Dashboard
-      li.selected.has-sub-menu.active
-        a(href='index.html')
-          .icon-w
-            .os-icon.os-icon-layout
-          span Overview
-      li.selected.has-sub-menu
-        a(href='sales.html')
-          .icon-w
-            .os-icon.os-icon-wallet-loaded
-          span Sales
-      li.selected.has-sub-menu
-        a(href='expense.html')
-          .icon-w
-            .os-icon.os-icon-zap
-          span Expense
-      li.selected.has-sub-menu
-        a(href='customer.html')
-          .icon-w
-            .os-icon.os-icon-users
-          span Customers
-      li.selected.has-sub-menu
-        a(href='staff.html')
-          .icon-w
-            .os-icon.os-icon-user-male-circle2
-          span Staff
-      li.selected.has-sub-menu
-        a(href='inventory.html')
-          .icon-w
-            strong
-              .picons-thin-icon-thin-0179_layers_slides
-          span inventory
+    if user.userType === 'admin'
+        li.sub-header
+          span Dashboard
+        li.selected.has-sub-menu.active
+          a(href='index.html')
+            .icon-w
+              .os-icon.os-icon-layout
+            span Overview
+        li.selected.has-sub-menu
+          a(href='/scienceweb/articles')
+            .icon-w
+              .os-icon.os-icon-wallet-loaded
+            span Articles
   //
     ------------------
     END - Main Menu
@@ -97,7 +75,8 @@ block content
       .content-box.bg-white
         .element-wrapper.compact.pt-4
           .element-actions
-            a.btn.btn-primary.btn-sm(href='/scienceweb/addArticle')
+            if user.userType === 'admin'
+              a.btn.btn-primary.btn-sm(href='/scienceweb/addArticle')
               i.os-icon.os-icon-ui-22
               span Add New Article
           h6.element-header
@@ -119,38 +98,6 @@ block content
             .col-lg-3.col-xxl-3
               .element-wrapper.pb-1
                 button.btn.btn-primary.mt-1.text-white  Search
-          //- .row.mt-2
-            .col-lg-2.col-xxl-2
-              .form-group.mb-0
-                select.form-control.border-light(name='', id='')
-                  option(value='') AND
-                  option(value='') OR
-                  option(value='') NOT
-            .col-lg-4.col-xxl-4
-              // START - CHART
-              .element-wrapper.pb-1
-                .element-search.border-white
-                  input.bg-white(placeholder='Type to search for products...', type='text')
-              // END - CHART
-            .col-lg-3.col-xxl-3
-              .element-wrapper.pb-1
-                .form-group.mb-0
-                  select.form-control.border-light(name='', id='')
-                    option(value='') Topic
-                    option(value='') Topic
-                    option(value='') Topic
-                    option(value='') Topic
-            .col-lg-3.col-xxl-3
-              .element-wrapper.pb-1
-                button.btn.btn-primary.mt-1.text-white  Search
-          //- .row
-            .col-md-12
-              .element-wrapper.text-center
-                a.small(href='#')
-                  span.os-icon.os-icon-plus
-                  |  add a new field
-                span.b-r.mr-1
-                a.small(href='#')  reset form
           hr
           //- .row
           //- .col-lg-3
