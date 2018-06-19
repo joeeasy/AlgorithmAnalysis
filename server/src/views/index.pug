@@ -53,19 +53,19 @@ block content
     h1.menu-page-header
       | Page Header
     ul.main-menu
-    if user.userType === 'admin'
-        li.sub-header
-          span Dashboard
-        li.selected.has-sub-menu.active
-          a(href='index.html')
-            .icon-w
-              .os-icon.os-icon-layout
-            span Overview
-        li.selected.has-sub-menu
-          a(href='/scienceweb/articles')
-            .icon-w
-              .os-icon.os-icon-wallet-loaded
-            span Articles
+      if user.userType === 'admin'
+          li.sub-header
+            span Dashboard
+          li.selected.has-sub-menu.active
+            a(href='index.html')
+              .icon-w
+                .os-icon.os-icon-layout
+              span Overview
+          li.selected.has-sub-menu
+            a(href='/scienceweb/articles')
+              .icon-w
+                .os-icon.os-icon-wallet-loaded
+              span Articles
   //
     ------------------
     END - Main Menu
@@ -77,8 +77,8 @@ block content
           .element-actions
             if user.userType === 'admin'
               a.btn.btn-primary.btn-sm(href='/scienceweb/addArticle')
-              i.os-icon.os-icon-ui-22
-              span Add New Article
+                i.os-icon.os-icon-ui-22
+                span Add New Article
           h6.element-header
             | Search
         .container
