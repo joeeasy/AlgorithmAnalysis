@@ -30,8 +30,9 @@ block content
               p
                 a.btn(href='/scienceweb/search/'+article._id) Full Text Option
                 button.btn.ml-4.text-primary(data-target='#viewAbstract'+index, data-toggle='modal') View Abstracts
-                a.btn.ml-4.btn-info(type='button', href='/scienceweb/article/edit?articleId='+article._id) Edit
-                button.btn.ml-4.btn-danger(data-target='#delete'+index, data-toggle='modal') Delete
+                if user.userType === 'admin'
+                  a.btn.ml-4.btn-info(type='button', href='/scienceweb/article/edit?articleId='+article._id) Edit
+                  button.btn.ml-4.btn-danger(data-target='#delete'+index, data-toggle='modal') Delete
                 .onboarding-modal.modal.fade.animated(aria-hidden='true', role='dialog', tabindex='-1', id="viewAbstract"+index)
                   .modal-dialog.modal-centered(role='document')
                     .modal-content.text-center
