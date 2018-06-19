@@ -28,14 +28,16 @@ html
             img(alt='', src='/sciencewebassets/assets/img/logo-big.png')
         h4.auth-header
           | Login To Science Web
-        form(action='')
+        form(action='/login', method='POST')
+          if message
+            div(class='alert alert-danger', role='alert') #{message}
           .form-group
             label(for='') Email address
-            input.form-control(type='email', placeholder='Enter your email')
+            input.form-control(type='email', placeholder='Enter your email', name='username')
             .pre-icon.os-icon.os-icon-user-male-circle
           .form-group
             label(for='') Password
-            input.form-control(placeholder='Enter your password', type='password')
+            input.form-control(placeholder='Enter your password', type='password', name='password')
             .pre-icon.os-icon.os-icon-fingerprint
           .buttons-w
             button.btn.btn-primary Log in
