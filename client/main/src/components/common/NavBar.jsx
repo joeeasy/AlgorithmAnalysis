@@ -26,7 +26,7 @@ const NavBar = () => (
               {/* <!-- Logo --> */}
               <div className="s-header-v2__logo">
                 <Link to="/" className="s-header-v2__logo-link">
-                  {window.location.pathname ===( "/contact" || "/asci" )? (
+                  {window.location.pathname === ("/contact" || "/asci") ? (
                     <img
                       className="s-header-v2__logo-img s-header-v2__logo-img--default"
                       src="img/logo-white.png"
@@ -88,7 +88,7 @@ const NavBar = () => (
                     <ul className="dropdown-menu s-header-v2__dropdown-menu">
                       <li>
                         <Link
-                          to="abci.html"
+                          to="/abci"
                           className="s-header-v2__dropdown-menu-link"
                         >
                           ABCI
@@ -96,7 +96,7 @@ const NavBar = () => (
                       </li>
                       <li>
                         <Link
-                          to="asci.html"
+                          to="/asci"
                           className="s-header-v2__dropdown-menu-link"
                         >
                           ASCI
@@ -104,7 +104,7 @@ const NavBar = () => (
                       </li>
                       <li>
                         <Link
-                          to="assaci.html"
+                          to="/assaci"
                           className="s-header-v2__dropdown-menu-link"
                         >
                           ASSACI
@@ -112,15 +112,7 @@ const NavBar = () => (
                       </li>
                       <li>
                         <Link
-                          to="sci.html"
-                          className="s-header-v2__dropdown-menu-link"
-                        >
-                          SCI
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="mci"
+                          to="/mci"
                           className="s-header-v2__dropdown-menu-link"
                         >
                           MCI
