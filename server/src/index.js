@@ -21,7 +21,7 @@ import upload from 'express-fileupload';
 import passport from 'passport';
 import moment from 'moment';
 import { Strategy }  from 'passport-local';
-
+import helpers from './helpers/helpers';
 
 const LocalStrategy = Strategy;
 // cloudinary configuration
@@ -182,7 +182,7 @@ app.post('/search', (req, res) => {
 });
 
 // GET ROUTES
-app.get('/scienceweb', (req, res) => res.render('index'));
+app.get('/scienceweb', helpers.ensureAuthentication, (req, res) => res.render('index'));
 
 app.get('/login', (req, res) => res.render('login') );
 app.get('/scienceweb/pricing', (req, res) => res.render('pricing'));
@@ -200,15 +200,15 @@ app.get('/scienceweb/payment_summary/:id', (req, res) => {
   });
 });
 
-app.get('/scienceweb/searchResult', (req, res) => res.render('search_result'));
+app.get('/scienceweb/searchResult', helpers.ensureAuthentication, (req, res) => res.render('search_result'));
 
 app.get('/scienceweb/search/:articleID', (req, res) => {
   Article.find({_id: req.params.articleID},(err, articles) => {
     res.render('search_details', {articles});
   })
 });
-app.get('/scienceweb/addArticle', (req, res) => res.render('addarticle'));
-app.get('/scienceweb/articles', (req, res) =>{
+app.get('/scienceweb/addArticle', helpers.ensureAuthentication, (req, res) => res.render('addarticle'));
+app.get('/scienceweb/articles', helpers.ensureAuthentication, (req, res) =>{
   Article.find((err, articles) => {
     // console.log(articles);
     res.render('articles', {articles});
@@ -217,7 +217,7 @@ app.get('/scienceweb/articles', (req, res) =>{
 });
 
 // POST ROUTES creating articles
-app.post('/scienceweb/addArticle', (req, res) => {
+app.post('/scienceweb/addArticle', helpers.ensureAuthentication, (req, res) => {
   if (!req.files)
     return res.status(400).send('No files were uploaded.');
  
@@ -259,7 +259,7 @@ app.post('/scienceweb/addArticle', (req, res) => {
 
 
 // post search result 
-app.post('/scienceweb/searchResult', (req, res) => {
+app.post('/scienceweb/searchResult', helpers.ensureAuthentication, (req, res) => {
   // console.log(req.body.search)
   let keyword = req.body.search;
   let articles = [];
@@ -276,7 +276,7 @@ app.post('/scienceweb/searchResult', (req, res) => {
 });
 
 // EDIT ARTICLE
-app.get('/scienceweb/article/edit', (req, res) => {
+app.get('/scienceweb/article/edit', helpers.ensureAuthentication, (req, res) => {
   let id = req.query.articleId;
   Article.find({_id: id}, (err, articles) => {
     res.render('editArticle', {articles})
@@ -284,7 +284,7 @@ app.get('/scienceweb/article/edit', (req, res) => {
 });
 
 // UPDATE EDITTED ARTICLES
-app.post('/scienceweb/article/update', (req, res) => {
+app.post('/scienceweb/article/update', helpers.ensureAuthentication, (req, res) => {
   // console.log(req.params.id);
 
   let id = req.body.id;
@@ -365,6 +365,7 @@ app.post('/institution-signup/', (req, res) => {
           
           let user = new User(req.body);
           // save the newly created user
+          console.log(user)
           userId = user._id;
           user.save((err) => {
             if (err) return handleError(err);
@@ -381,17 +382,38 @@ app.post('/institution-signup/', (req, res) => {
 // LOGIN
 passport.use(new LocalStrategy(
   function(email, password, done) {
+    let userPass = '';
     User.findOne({ email: email }, function(err, user) {
+      userPass = user.password;
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Incorrect username or password.' });
       }
-      if (!user.validPassword(password)) {
+      if (!helpers.validatePassword(password, userPass)) {
+        console.log('invalid password')
         return done(null, false, { message: 'Incorrect password or username.' });
       }
+      console.log(user)
+      console.log('login sucessful')
       return done(null, user);
     });
   }
 ));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/scienceweb',
+                                   failureRedirect: '/login',
+                                   failureFlash: true })
+);
 
 app.listen(Port, (req, res) => console.log('server started http://localhost:' + Port));
