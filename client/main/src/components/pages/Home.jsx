@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Home = () => (
   <div>
     <div
@@ -17,25 +17,25 @@ const Home = () => (
             Algorithm Analysis
           </h1>
           <p className="g-font-size-18--xs g-font-size-26--md g-color--white-opacity g-margin-b-0--xs">
-            We are an online indexing service and scientific database containing
+            We are an Online Indexing Service And Academic Database containing
             the collection of scientific and academic titles.
           </p>
         </div>
         <span className="g-display-block--xs g-display-inline-block--sm g-padding-x-5--xs g-margin-b-10--xs g-margin-b-0--sm">
           <a
-            href="./about.html"
+            href="/scienceweb"
             className="text-uppercase s-btn s-btn-icon--md s-btn--primary-bg g-radius--50 g-padding-x-45--xs"
           >
-            Learn More
+            Login to Science Web Index
           </a>
         </span>
         <span className="g-display-block--xs g-display-inline-block--sm g-padding-x-5--xs g-margin-b-10--xs g-margin-b-0--sm">
-          <a
-            href="./search.html"
+          <Link
+            to="/search"
             className="text-uppercase s-btn s-btn-icon--md s-btn--white-brd g-radius--50 g-padding-x-65--xs"
           >
             Find Citation
-          </a>
+          </Link>
         </span>
       </div>
     </div>
@@ -204,14 +204,14 @@ const Home = () => (
       <div className="container g-text-center--xs g-padding-y-80--xs g-padding-y-125--sm">
         <div className="g-margin-b-80--xs">
           <h2 className="g-font-size-40--xs g-font-size-50--sm g-font-size-60--md g-color--white">
-            View Our master Journal
+            View Our Journal Master List
           </h2>
         </div>
         <a
           href="masterjournals.html"
           className="text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50"
         >
-          View Master Journal
+          View Journal Master List
         </a>
       </div>
     </div>
