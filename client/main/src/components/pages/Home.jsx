@@ -204,14 +204,14 @@ const Home = () => (
       <div className="container g-text-center--xs g-padding-y-80--xs g-padding-y-125--sm">
         <div className="g-margin-b-80--xs">
           <h2 className="g-font-size-40--xs g-font-size-50--sm g-font-size-60--md g-color--white">
-            View Our Journal Master List
+            Sign Up For Science Web
           </h2>
         </div>
         <a
-          href="masterjournals.html"
+          href="/scienceweb/pricing"
           className="text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50"
         >
-          View Journal Master List
+          scienceweb Sign Up
         </a>
       </div>
     </div>
@@ -379,28 +379,6 @@ const Home = () => (
               </div>
               <a
                 href="assaci.html"
-                className="text-uppercase s-btn s-btn--xs s-btn--white-brd g-radius--50"
-              >
-                Read More
-              </a>
-            </div>
-          </article>
-          <article
-            className="s-promo-block-v6 g-bg-position--center swiper-slide"
-            style={{ background: "url('img/400x500/10.jpg')" }}
-          >
-            <div className="g-text-center--xs g-padding-x-15--xs g-padding-x-30--lg g-padding-y-50--xs g-margin-t-120--xs">
-              <div className="g-margin-b-25--xs">
-                <h3 className="g-font-size-16--xs g-color--white g-margin-b-5--xs">
-                  Scholar Citation Index (SCI)
-                </h3>
-                <p className="g-color--white">
-                  Covers multi disciplinary subjects which titles have published
-                  in 5 years...
-                </p>
-              </div>
-              <a
-                href="sci.html"
                 className="text-uppercase s-btn s-btn--xs s-btn--white-brd g-radius--50"
               >
                 Read More
