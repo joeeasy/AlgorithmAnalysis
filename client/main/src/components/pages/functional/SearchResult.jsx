@@ -17,7 +17,7 @@ class SearchResult extends Component {
       case "Current Contents - Clinical Medicine":
         return "Algorithm Medical Citation Index (AMCI)";
       default:
-        "Other Citation Index";
+        return "Uncategorized";
     }
   }
   render() {

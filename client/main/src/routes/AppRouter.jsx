@@ -12,13 +12,7 @@ import Coverage from "../components/pages/Coverage";
 import Abci from "../components/pages/masterlist/Abci";
 import Assaci from "../components/pages/masterlist/Assaci";
 import Mci from "../components/pages/masterlist/Mci";
-// import NotFound from "../components/common/NotFound";
-// import Discover from "../components/pages/Discover";
-// import PopularClips from "../components/pages/PopularClips";
-// import SearchMovies from "../components/pages/SearchMovies";
-// import MovieAndTv from "../components/pages/MovieAndTv";
-// import MovieInfo from "../components/pages/MovieDetail/MovieInfo";
-// import Contact from "../components/pages/Contact";
+
 const AppRouter = () => (
   <div className="wrapper">
     <Navbar />

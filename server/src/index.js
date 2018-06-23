@@ -125,6 +125,15 @@ app.get('/', (req, res) => {
 app.get('/contact', (req, res) => {
   res.sendfile(path.resolve(__dirname, '../../client/public/index.html'));
 });
+app.get('/search', (req, res) => {
+  res.sendfile(path.resolve(__dirname, '../../client/public/index.html'));
+});
+app.get('/contact', (req, res) => {
+  res.sendfile(path.resolve(__dirname, '../../client/public/index.html'));
+});
+app.get('/contact', (req, res) => {
+  res.sendfile(path.resolve(__dirname, '../../client/public/index.html'));
+});
 
 /**
  * start scrapper

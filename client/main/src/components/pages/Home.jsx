@@ -75,7 +75,7 @@ const Home = () => (
                 {" "}
                 covers the business asearchnd resources on the study of
                 biological sciences in the areas of Chemistry in...
-                <a href="#">Learn More ></a>
+                <Link to="/abci">Learn More ></Link>
               </p>
             </div>
           </div>
@@ -98,7 +98,7 @@ const Home = () => (
               <p className="g-margin-b-0--xs">
                 covers the resources of primary and major aspect of science in
                 Astronomy, Biology, Chemistry, Cognitive ...
-                <a href="#">Learn More</a>
+                <Link to="/asci">Learn More</Link>
               </p>
             </div>
           </div>
@@ -121,7 +121,7 @@ const Home = () => (
               <p className="g-margin-b-0--xs">
                 focus on the business and resources on study concerning
                 educational Sciences, social...
-                <a href="#">Learn More</a>
+                <Link to="/assaci">Learn More</Link>
               </p>
             </div>
           </div>
@@ -129,30 +129,6 @@ const Home = () => (
       </div>
       {/* <!-- // end row  --> */}
       <div className="row">
-        <div className="col-sm-4 g-margin-b-60--xs g-margin-b-0--md">
-          <div className="clearfix">
-            <div className="g-media g-width-30--xs">
-              <div
-                className="wow fadeInDown"
-                data-wow-duration=".3"
-                data-wow-delay=".4s"
-              >
-                <i className="g-font-size-28--xs g-color--primary ti-package" />
-              </div>
-            </div>
-            <div className="g-media__body g-padding-x-20--xs">
-              <h3 className="g-font-size-18--xs">
-                Scholar Citation Index (SCI){" "}
-              </h3>
-              <p className="g-margin-b-0--xs">
-                {" "}
-                covers multi disciplinary subjects which titles have published
-                in 5 years and above. SCI index covers subjects in all...
-                <a href="#">Learn More</a>
-              </p>
-            </div>
-          </div>
-        </div>
         <div className="col-sm-4 g-margin-b-60--xs g-margin-b-0--md">
           <div className="clearfix">
             <div className="g-media g-width-30--xs">
@@ -171,7 +147,7 @@ const Home = () => (
               <p className="g-margin-b-0--xs">
                 covers the business on all aspects of medical subjects including
                 Acne, Acute Coronary Syndromes (ACS), Acute...
-                <a href="#">Learn More</a>
+                <Link to="/mci">Learn More</Link>
               </p>
             </div>
           </div>
