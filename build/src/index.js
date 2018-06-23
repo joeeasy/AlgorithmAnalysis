@@ -190,6 +190,15 @@ app.get('/', function (req, res) {
 app.get('/contact', function (req, res) {
   res.sendfile(_path2.default.resolve(__dirname, '../../client/public/index.html'));
 });
+app.get('/search', function (req, res) {
+  res.sendfile(_path2.default.resolve(__dirname, '../../client/public/index.html'));
+});
+app.get('/contact', function (req, res) {
+  res.sendfile(_path2.default.resolve(__dirname, '../../client/public/index.html'));
+});
+app.get('/contact', function (req, res) {
+  res.sendfile(_path2.default.resolve(__dirname, '../../client/public/index.html'));
+});
 
 /**
  * start scrapper
