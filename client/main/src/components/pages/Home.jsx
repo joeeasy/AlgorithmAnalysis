@@ -311,12 +311,12 @@ const Home = () => (
                   Covers the business and resources on the study of...
                 </p>
               </div>
-              <a
-                href="abci.html"
+              <Link
+                to="/abci"
                 className="text-uppercase s-btn s-btn--xs s-btn--white-brd g-radius--50"
               >
                 Read More
-              </a>
+              </Link>
             </div>
           </article>
           <article
@@ -332,12 +332,12 @@ const Home = () => (
                   Covers the resources of primary and major aspect o....
                 </p>
               </div>
-              <a
-                href="asci.html"
+              <Link
+                to="asci.html"
                 className="text-uppercase s-btn s-btn--xs s-btn--white-brd g-radius--50"
               >
                 Read More
-              </a>
+              </Link>
             </div>
           </article>
           <article
@@ -353,12 +353,12 @@ const Home = () => (
                   Focus on the business and resources on study concerning...
                 </p>
               </div>
-              <a
-                href="assaci.html"
+              <Link
+                to="/assaci"
                 className="text-uppercase s-btn s-btn--xs s-btn--white-brd g-radius--50"
               >
                 Read More
-              </a>
+              </Link>
             </div>
           </article>
           <article
@@ -375,12 +375,12 @@ const Home = () => (
                   including...
                 </p>
               </div>
-              <a
-                href="mci.html"
+              <Link
+                to="/mci"
                 className="text-uppercase s-btn s-btn--xs s-btn--white-brd g-radius--50"
               >
                 Read More
-              </a>
+              </Link>
             </div>
           </article>
         </div>
@@ -390,66 +390,6 @@ const Home = () => (
         <div className="s-swiper__pagination-v1 s-swiper__pagination-v1--dark g-text-center--xs js__swiper-pagination" />
       </div>
       {/* <!-- End Swiper --> */}
-    </div>
-
-    <div
-      className="js__parallax-window"
-      style={{ background: "url(img/1920x1080/06.jpg) 50% 0 no-repeat fixed" }}
-    >
-      <div className="container g-padding-y-80--xs g-padding-y-125--sm">
-        <div className="row">
-          <div className="col-md-3 col-xs-6 g-full-width--xs g-margin-b-70--xs g-margin-b-0--lg">
-            <div className="g-text-center--xs">
-              <div className="g-margin-b-10--xs">
-                <figure className="g-display-inline-block--xs g-font-size-70--xs g-color--white js__counter">
-                  6
-                </figure>
-                <span className="g-font-size-40--xs g-color--white">k</span>
-              </div>
-              <div className="center-block g-hor-divider__solid--white g-width-40--xs g-margin-b-25--xs" />
-              <h4 className="g-font-size-18--xs g-color--white">
-                Lines of Code
-              </h4>
-            </div>
-          </div>
-          <div className="col-md-3 col-xs-6 g-full-width--xs g-margin-b-70--xs g-margin-b-0--lg">
-            <div className="g-text-center--xs">
-              <figure className="g-display-block--xs g-font-size-70--xs g-color--white g-margin-b-10--xs js__counter">
-                5
-              </figure>
-              <div className="center-block g-hor-divider__solid--white g-width-40--xs g-margin-b-25--xs" />
-              <h4 className="g-font-size-18--xs g-color--white">
-                Award Winners
-              </h4>
-            </div>
-          </div>
-          <div className="col-md-3 col-xs-6 g-full-width--xs g-margin-b-70--xs g-margin-b-0--sm">
-            <div className="g-text-center--xs">
-              <figure className="g-display-block--xs g-font-size-70--xs g-color--white g-margin-b-10--xs js__counter">
-                15
-              </figure>
-              <div className="center-block g-hor-divider__solid--white g-width-40--xs g-margin-b-25--xs" />
-              <h4 className="g-font-size-18--xs g-color--white">
-                Multiple Pages
-              </h4>
-            </div>
-          </div>
-          <div className="col-md-3 col-xs-6 g-full-width--xs">
-            <div className="g-text-center--xs">
-              <div className="g-margin-b-10--xs">
-                <figure className="g-display-inline-block--xs g-font-size-70--xs g-color--white js__counter">
-                  2
-                </figure>
-                <span className="g-font-size-40--xs g-color--white">x</span>
-              </div>
-              <div className="center-block g-hor-divider__solid--white g-width-40--xs g-margin-b-25--xs" />
-              <h4 className="g-font-size-18--xs g-color--white">
-                Faster Support
-              </h4>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div className="g-bg-color--sky-light">
