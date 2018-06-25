@@ -52,7 +52,7 @@ const Home = () => (
         </p>
         <h2 className="g-font-size-32--xs g-font-size-36--md">
           {" "}
-          online indexing service and biological database.
+          Online Indexing Service And Academic Database.
         </h2>
       </div>
       <div className="row g-margin-b-60--xs g-margin-b-70--md">
@@ -152,6 +152,29 @@ const Home = () => (
             </div>
           </div>
         </div>
+        <div className="col-sm-4 g-margin-b-60--xs g-margin-b-0--md">
+          <div className="clearfix">
+            <div className="g-media g-width-30--xs">
+              <div
+                className="wow fadeInDown"
+                data-wow-duration=".3"
+                data-wow-delay=".5s"
+              >
+                <i className="g-font-size-28--xs g-color--primary ti-package" />
+              </div>
+            </div>
+            <div className="g-media__body g-padding-x-20--xs">
+              <h3 className="g-font-size-18--xs">
+                Scholar Citation Index (SCI)
+              </h3>
+              <p className="g-margin-b-0--xs">
+                covers multi disciplinary subjects which titles have published
+                <Link to="/sci">Learn More</Link>
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* <!-- <div className="col-sm-4">
             <div className="clearfix">
                 <div className="g-media g-width-30--xs">
