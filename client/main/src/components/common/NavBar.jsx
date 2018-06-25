@@ -82,7 +82,7 @@ const NavBar = () => (
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      Master Journal
+                      Master Journal List
                       <span className="g-font-size-10--xs g-margin-l-5--xs ti-angle-down" />
                     </Link>
                     <ul className="dropdown-menu s-header-v2__dropdown-menu">
