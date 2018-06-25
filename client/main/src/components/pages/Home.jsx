@@ -314,7 +314,7 @@ const Home = () => (
         <p className="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs">
           Indexes
         </p>
-        <p>Online Indexing Service And Biological Database.</p>
+        <p>Online Indexing Service And Academic Database.</p>
       </div>
 
       {/* <!-- Swiper --> */}
