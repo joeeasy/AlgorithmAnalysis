@@ -17,5 +17,7 @@ helpers.ensureAuthentication = function (req, res, next) {
 		res.redirect('/login');
 	}
 };
+
+helpers.coverages = '';
 exports.default = helpers;
 //# sourceMappingURL=helpers.js.map

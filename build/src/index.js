@@ -232,6 +232,7 @@ app.post('/search', function (req, res) {
           coverage = [];
           cite.children.forEach(function (name) {
             if (name.name === 'li') {
+              console.log(name.firstChild.children[0].data);
               // console.log(name.firstChild.attribs)
               coverage.push({
                 link: name.firstChild.attribs,
