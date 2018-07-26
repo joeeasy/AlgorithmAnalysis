@@ -17,7 +17,7 @@ class SearchResult extends Component {
       case "Current Contents - Clinical Medicine":
         return "Algorithm Medical Citation Index (AMCI)";
       default:
-        return "Uncategorized";
+        return "";
     }
   }
   render() {
@@ -40,8 +40,18 @@ class SearchResult extends Component {
               aria-expanded="false"
               aria-controls="collapseExample"
             >
-              <strong>Coverage</strong>{" "}
-              <span className="g-font-size-10--xs g-margin-l-5--xs ti-angle-down" />
+              {this.props.result.coverage.map((coverage, index) => {
+                let coverageText = "";
+
+                if (this.displayText(coverage.text) !== "") {
+                  coverageText = `Coverage`;
+                  localStorage.setItem("coverage", coverageText);
+                }
+              })}
+              <span>
+                <strong>{localStorage.getItem("coverage")}</strong>
+                <span className="g-font-size-10--xs g-margin-l-5--xs ti-angle-down" />
+              </span>
             </a>
             <div className="collapse" id={this.props.indexId}>
               <div className="card card-body">

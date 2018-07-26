@@ -10,4 +10,6 @@ helpers.ensureAuthentication = (req, res, next) => {
 		res.redirect('/login');
 	}
 }
+
+helpers.coverages = ''
 export default helpers;
