@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 class SearchResult extends Component {
   constructor(props) {
     super(props);
+    this.coverage = "";
   }
   displayText(text) {
     switch (text) {
@@ -44,14 +45,18 @@ class SearchResult extends Component {
                 let coverageText = "";
 
                 if (this.displayText(coverage.text) !== "") {
-                  coverageText = `Coverage`;
-                  localStorage.setItem("coverage", coverageText);
+                  if (localStorage.getItem("coverage")) {
+                    localStorage.removeItem("coverage");
+                  }
+                  this.coverage = (
+                    <span>
+                      <strong>coverage</strong>
+                      <span className="g-font-size-10--xs g-margin-l-5--xs ti-angle-down" />
+                    </span>
+                  );
                 }
               })}
-              <span>
-                <strong>{localStorage.getItem("coverage")}</strong>
-                <span className="g-font-size-10--xs g-margin-l-5--xs ti-angle-down" />
-              </span>
+              {this.coverage}
             </a>
             <div className="collapse" id={this.props.indexId}>
               <div className="card card-body">
